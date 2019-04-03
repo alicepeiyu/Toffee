@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="coffeemeetsboba" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="zEJ-3l-1yJ">
+                                <rect key="frame" x="132" y="233" width="375" height="667"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="Y06-iv-EyO">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="333.5"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Screen Shot 2019-03-24 at 6.46.16 PM" translatesAutoresizingMaskIntoConstraints="NO" id="8hk-f7-gEZ">
+                                        <rect key="frame" x="0.0" y="333.5" width="375" height="333.5"/>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="zEJ-3l-1yJ" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="ZXu-Iw-nCb"/>
+                            <constraint firstItem="zEJ-3l-1yJ" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="Zx4-FY-BIs"/>
+                            <constraint firstItem="zEJ-3l-1yJ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="awV-Q9-ctp"/>
+                            <constraint firstItem="zEJ-3l-1yJ" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="u4A-wc-E1r"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <segue destination="kSf-wf-n0o" kind="presentation" identifier="swipeRight" modalTransitionStyle="flipHorizontal" id="FjM-v1-w1U"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-276" y="-247.82608695652175"/>
+        </scene>
+        <!--Spinning View Controller-->
+        <scene sceneID="Upd-FW-6Ho">
+            <objects>
+                <viewController id="kSf-wf-n0o" customClass="spinningViewController" customModule="coffeemeetsboba" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gb9-ah-BoJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BUV-RX-AoX" customClass="TTFortuneWheel" customModule="TTFortuneWheel">
+                                <rect key="frame" x="19" y="164" width="337" height="337"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="BUV-RX-AoX" secondAttribute="height" multiplier="1:1" id="feo-Ka-1f1"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wheelFrame" translatesAutoresizingMaskIntoConstraints="NO" id="mJu-h9-ahv">
+                                <rect key="frame" x="3" y="150.5" width="369" height="386"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="mJu-h9-ahv" secondAttribute="height" multiplier="369:386" id="E5r-bP-hhX"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qpo-vB-kLm">
+                                <rect key="frame" x="162" y="321" width="51" height="39"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                <state key="normal" title="SPIN">
+                                    <color key="titleColor" red="1" green="0.97995503120000005" blue="0.25470826730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="rotateButton:" destination="kSf-wf-n0o" eventType="touchUpInside" id="p97-Ml-8nN"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="BUV-RX-AoX" firstAttribute="leading" secondItem="mJu-h9-ahv" secondAttribute="leading" constant="16" id="92W-s3-3Y6"/>
+                            <constraint firstItem="BUV-RX-AoX" firstAttribute="centerX" secondItem="mJu-h9-ahv" secondAttribute="centerX" id="9gm-07-Mvi"/>
+                            <constraint firstItem="BUV-RX-AoX" firstAttribute="centerX" secondItem="mJu-h9-ahv" secondAttribute="centerX" id="Q4t-AO-HO3"/>
+                            <constraint firstItem="YVo-2P-W91" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="mJu-h9-ahv" secondAttribute="trailing" constant="3" id="XcB-vS-f8E"/>
+                            <constraint firstItem="BUV-RX-AoX" firstAttribute="centerY" secondItem="mJu-h9-ahv" secondAttribute="centerY" constant="-11" id="aYZ-c6-nX0"/>
+                            <constraint firstItem="mJu-h9-ahv" firstAttribute="centerY" secondItem="YVo-2P-W91" secondAttribute="centerY" id="b6P-Ns-qJE"/>
+                            <constraint firstItem="mJu-h9-ahv" firstAttribute="centerX" secondItem="YVo-2P-W91" secondAttribute="centerX" id="iJf-QO-NeE"/>
+                            <constraint firstItem="Qpo-vB-kLm" firstAttribute="centerX" secondItem="mJu-h9-ahv" secondAttribute="centerX" id="jy2-uz-eO6"/>
+                            <constraint firstItem="Qpo-vB-kLm" firstAttribute="centerY" secondItem="mJu-h9-ahv" secondAttribute="centerY" constant="-3" id="u6G-Xd-xNh"/>
+                            <constraint firstItem="mJu-h9-ahv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="YVo-2P-W91" secondAttribute="leading" constant="3" id="xKG-Ev-Eye"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="YVo-2P-W91"/>
+                    </view>
+                    <connections>
+                        <outlet property="spinningWheel" destination="BUV-RX-AoX" id="Ff2-Ln-7mH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qIh-d5-cmU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="880.79999999999995" y="54.422788605697157"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="1" width="750" height="750"/>
+        <image name="Screen Shot 2019-03-24 at 6.46.16 PM" width="139" height="148"/>
+        <image name="wheelFrame" width="369" height="386"/>
+    </resources>
+</document>
