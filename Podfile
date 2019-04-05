@@ -21,5 +21,6 @@ target 'coffeemeetsboba' do
   pod 'CDYelpFusionKit', '1.5.1'
   pod 'AFNetworking', '~> 2.5'
   pod 'BDBOAuth1Manager'
+  pod 'Kingfisher', '~> 5.0'
 
 end
