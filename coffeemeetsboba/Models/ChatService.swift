@@ -10,18 +10,29 @@ import MultipeerConnectivity
 import Foundation
 
 
+protocol ChatServiceDelegate {
+    func foundPeer()
+    func lostPeer()
+    func invitationWasReceived(fromPeer: String)
+    func connectedWithPeer(peerID: MCPeerID)
+}
+
 class ChatService: NSObject {
-    private let chatServiceType = "cmb-chat"
+    private let chatServiceType = "toffee-chat"
     
     private let myPeerId = MCPeerID(displayName: UIDevice.current.name)
     private let serviceAdvertiser : MCNearbyServiceAdvertiser
     private let serviceBrowser : MCNearbyServiceBrowser
+    
+    var delegate: ChatServiceDelegate?
     
     lazy var session : MCSession = {
         let session = MCSession(peer: self.myPeerId, securityIdentity: nil, encryptionPreference: .required)
         session.delegate = self
         return session
     }()
+    
+    var foundPeers : [MCPeerID] = []
     
     override init() {
         
@@ -64,12 +75,20 @@ extension ChatService : MCNearbyServiceBrowserDelegate {
     
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
         NSLog("%@", "foundPeer: \(peerID)")
+        foundPeers.append(peerID)
+        delegate?.foundPeer()
     }
     
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
         NSLog("%@", "lostPeer: \(peerID)")
+        for (index, aPeer) in foundPeers.enumerated(){
+            if aPeer == peerID {
+                foundPeers.remove(at: index)
+                break
+            }
+        }
+        delegate?.lostPeer()
     }
-    
 }
 
 extension ChatService : MCSessionDelegate {
@@ -95,4 +114,3 @@ extension ChatService : MCSessionDelegate {
     }
     
 }
-
