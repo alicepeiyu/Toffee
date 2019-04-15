@@ -10,15 +10,32 @@ import Foundation
 import UIKit
 import TTFortuneWheel
 import CDYelpFusionKit
+import MapKit
+import CoreLocation
 
 var teaList: [Business]!
 var coffeeList: [Business]!
 var tea = true
+var locationValue: CLLocationCoordinate2D!
 
-class ViewController: UIViewController {
+class ViewController: UIViewController , CLLocationManagerDelegate {
+    
+    //var locationManager = CLLocationManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //self.locationManager.requestAlwaysAuthorization()
+        
+        // For use in foreground
+//        self.locationManager.requestWhenInUseAuthorization()
+//
+//        if CLLocationManager.locationServicesEnabled() {
+//            locationManager.delegate = self
+//            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+//            locationManager.startUpdatingLocation()
+//        }
+        
         Business.searchWithTerm(term: "tea", sort: .distance, categories: ["tea","bubbletea"]) { (businesses, error) in
             teaList = businesses
             for business in teaList {
@@ -48,6 +65,11 @@ class ViewController: UIViewController {
 
     }
     
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+//        print("locations = \(locValue.latitude) \(locValue.longitude)")
+//        locationValue = locValue
+//    }
 
 }
 

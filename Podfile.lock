@@ -33,7 +33,10 @@ PODS:
   - ChattoAdditions (3.3.1):
     - Chatto
   - Kingfisher (5.2.0)
+  - Koloda (4.7):
+    - pop (~> 1.0)
   - ObjectMapper (3.4.2)
+  - pop (1.0.12)
   - TTFortuneWheel (0.1.6)
 
 DEPENDENCIES:
@@ -43,6 +46,7 @@ DEPENDENCIES:
   - Chatto (= 3.3.1)
   - ChattoAdditions (= 3.3.1)
   - Kingfisher (~> 5.0)
+  - Koloda
   - TTFortuneWheel
 
 SPEC REPOS:
@@ -55,7 +59,9 @@ SPEC REPOS:
     - Chatto
     - ChattoAdditions
     - Kingfisher
+    - Koloda
     - ObjectMapper
+    - pop
     - TTFortuneWheel
 
 SPEC CHECKSUMS:
@@ -67,9 +73,11 @@ SPEC CHECKSUMS:
   Chatto: 24a6c9b0c91b08130466888b8b61563b90191c6f
   ChattoAdditions: cc74cd3dd371aa3f70e5ab8568a4f383f0c0eb8c
   Kingfisher: 07067cfacf371117330dceb4b4b8f5c4b691ab42
+  Koloda: f456d003d2ce15ef9f10c2874a444f1f570b490c
   ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
+  pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   TTFortuneWheel: d0a8a5fd7f9e1960bac81af76f3b62848de3c32e
 
-PODFILE CHECKSUM: 1b4cf39e7154850fb415c4e9a5780fcf82423681
+PODFILE CHECKSUM: b6e12174151fadf007a2c53c7a418162819c7daf
 
 COCOAPODS: 1.6.1

@@ -20,15 +20,15 @@ class Business: NSObject {
     init(dictionary: NSDictionary) {
         name = dictionary["name"] as? String
         
-//                let imageURLString = dictionary["image_url"] as? String
-//                print(imageURLString)
-//                if imageURLString != nil {
-//                    imageURL = URL(string: imageURLString!)!
-//                } else {
-//                    imageURL = nil
-//                }
+                let imageURLString = dictionary["image_url"] as? String
+                
+        if !imageURLString!.isEmpty {
+                    imageURL = URL(string: imageURLString!)!
+                } else {
+                    imageURL = nil
+                }
         
-        imageURL = URL(string: "https://s3-media3.fl.yelpcdn.com/bphoto/0l3pxcpaZL8IyLfSacZa8Q/o.jpg")
+//        imageURL = URL(string: "https://s3-media3.fl.yelpcdn.com/bphoto/0l3pxcpaZL8IyLfSacZa8Q/o.jpg")
         
         let location = dictionary["location"] as? NSDictionary
         var address = ""

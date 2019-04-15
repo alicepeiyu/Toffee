@@ -24,5 +24,6 @@ target 'coffeemeetsboba' do
   pod 'Kingfisher', '~> 5.0'
   pod 'Chatto', '= 3.3.1'
   pod 'ChattoAdditions', '= 3.3.1' # if you want to use the cells or the input component
+  pod "Koloda"
 
 end
