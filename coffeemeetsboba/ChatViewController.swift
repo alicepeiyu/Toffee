@@ -18,8 +18,9 @@ class ChatViewController: BaseChatViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
+//        self.chatDataSource =
     }
     
     var chatInputPresenter: BasicChatInputBarPresenter!

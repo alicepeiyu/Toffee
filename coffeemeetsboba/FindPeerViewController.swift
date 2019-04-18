@@ -26,6 +26,7 @@ class FindPeerViewController: UIViewController, UITableViewDelegate, UITableView
         peerTable.delegate = self
         peerTable.dataSource = self
     }
+
     
     // MARK: - UITableViewDataSource
     

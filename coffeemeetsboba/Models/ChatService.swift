@@ -10,11 +10,9 @@ import MultipeerConnectivity
 import Foundation
 
 
-protocol ChatServiceDelegate {
+protocol ChatServiceDelegate : class {
     func foundPeer()
     func lostPeer()
-    func invitationWasReceived(fromPeer: String)
-    func connectedWithPeer(peerID: MCPeerID)
 }
 
 class ChatService: NSObject {
@@ -24,7 +22,7 @@ class ChatService: NSObject {
     private let serviceAdvertiser : MCNearbyServiceAdvertiser
     private let serviceBrowser : MCNearbyServiceBrowser
     
-    var delegate: ChatServiceDelegate?
+    weak var delegate: ChatServiceDelegate?
     
     lazy var session : MCSession = {
         let session = MCSession(peer: self.myPeerId, securityIdentity: nil, encryptionPreference: .required)
@@ -32,7 +30,7 @@ class ChatService: NSObject {
         return session
     }()
     
-    var foundPeers : [MCPeerID] = []
+    var foundPeers = [MCPeerID]()
     
     override init() {
         
@@ -40,7 +38,7 @@ class ChatService: NSObject {
         self.serviceBrowser = MCNearbyServiceBrowser(peer: myPeerId, serviceType: chatServiceType)
         
         super.init()
-        
+        NSLog("Init ChatService")
         self.serviceAdvertiser.delegate = self
         self.serviceAdvertiser.startAdvertisingPeer()
         
@@ -49,6 +47,7 @@ class ChatService: NSObject {
     }
     
     deinit {
+        NSLog("Deinit ChatService")
         self.serviceAdvertiser.stopAdvertisingPeer()
         self.serviceBrowser.stopBrowsingForPeers()
     }
