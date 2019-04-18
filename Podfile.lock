@@ -20,7 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - Alamofire (4.8.1)
+  - Alamofire (4.8.2)
   - AlamofireObjectMapper (5.2.0):
     - Alamofire (~> 4.7)
     - ObjectMapper (~> 3.4)
@@ -32,11 +32,8 @@ PODS:
   - Chatto (3.3.1)
   - ChattoAdditions (3.3.1):
     - Chatto
-  - Kingfisher (5.2.0)
-  - Koloda (4.7):
-    - pop (~> 1.0)
+  - Kingfisher (5.3.1)
   - ObjectMapper (3.4.2)
-  - pop (1.0.12)
   - TTFortuneWheel (0.1.6)
 
 DEPENDENCIES:
@@ -46,7 +43,6 @@ DEPENDENCIES:
   - Chatto (= 3.3.1)
   - ChattoAdditions (= 3.3.1)
   - Kingfisher (~> 5.0)
-  - Koloda
   - TTFortuneWheel
 
 SPEC REPOS:
@@ -59,25 +55,21 @@ SPEC REPOS:
     - Chatto
     - ChattoAdditions
     - Kingfisher
-    - Koloda
     - ObjectMapper
-    - pop
     - TTFortuneWheel
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
-  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   AlamofireObjectMapper: 92b6ce2423a9d159e686f6a1d514a009bf903ddc
   BDBOAuth1Manager: cd5a5872f355ca38180d52ca2dd844f0b0c84797
   CDYelpFusionKit: 94a7802fa23ef0eb78514c8a6f246f55b6bc91f0
   Chatto: 24a6c9b0c91b08130466888b8b61563b90191c6f
   ChattoAdditions: cc74cd3dd371aa3f70e5ab8568a4f383f0c0eb8c
-  Kingfisher: 07067cfacf371117330dceb4b4b8f5c4b691ab42
-  Koloda: f456d003d2ce15ef9f10c2874a444f1f570b490c
+  Kingfisher: d9e7e0b209b59b8f9873aa2f37654e81a7beea51
   ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
-  pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   TTFortuneWheel: d0a8a5fd7f9e1960bac81af76f3b62848de3c32e
 
-PODFILE CHECKSUM: b6e12174151fadf007a2c53c7a418162819c7daf
+PODFILE CHECKSUM: 1b4cf39e7154850fb415c4e9a5780fcf82423681
 
 COCOAPODS: 1.6.1

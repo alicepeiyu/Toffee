@@ -10,7 +10,7 @@ import UIKit
 
 import AFNetworking
 import BDBOAuth1Manager
-import MapKit
+//import MapKit
 import CoreLocation
 
 // You can register for Yelp API keys here: https://www.yelp.com/developers/v3/manage_app
@@ -20,12 +20,12 @@ enum YelpSortMode: String {
     case best_match, rating, review_count, distance
 }
 
-class YelpClient: AFHTTPRequestOperationManager, CLLocationManagerDelegate {
+class YelpClient: AFHTTPRequestOperationManager {
     var apiKey: String!
     
     //MARK: Shared Instance
     
-    let locationManager = CLLocationManager()
+    //let locationManager = CLLocationManager()
     
     static let sharedInstance = YelpClient(yelpAPIKey: yelpAPIKey)
     
@@ -42,28 +42,34 @@ class YelpClient: AFHTTPRequestOperationManager, CLLocationManagerDelegate {
     }
     
     
-    func searchWithTerm(_ term: String, completion: @escaping ([Business]?, Error?) -> Void) -> AFHTTPRequestOperation {
-        return searchWithTerm(term, sort: nil, categories: nil, openNow: nil, completion: completion)
+    func searchWithTerm(_ term: String, lat:CLLocationDegrees, long:CLLocationDegrees, completion: @escaping ([Business]?, Error?) -> Void) -> AFHTTPRequestOperation {
+        return searchWithTerm(term,lat: lat,long: long,sort: nil, categories: nil, openNow: nil, completion: completion)
     }
     
-    func searchWithTerm(_ term: String, sort: YelpSortMode?, categories: [String]?, openNow: Bool?, completion: @escaping ([Business]?, Error?) -> Void) -> AFHTTPRequestOperation {
+    func searchWithTerm(_ term: String, lat:CLLocationDegrees, long:CLLocationDegrees, sort: YelpSortMode?, categories: [String]?, openNow: Bool?, completion: @escaping ([Business]?, Error?) -> Void) -> AFHTTPRequestOperation {
         // For additional parameters, see https://www.yelp.com/developers/documentation/v3/business_search
-        
-        //let locationManager = CLLocationManager()
-        self.locationManager.requestAlwaysAuthorization()
+    
+        //self.locationManager.requestAlwaysAuthorization()
         
         // For use in foreground
-        self.locationManager.requestWhenInUseAuthorization()
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
-        }
+//        locationManager.requestWhenInUseAuthorization()
+//
+//        if CLLocationManager.locationServicesEnabled() {
+//            print("yes!")
+//            locationManager.delegate = self
+//            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//            locationManager.requestLocation()
+//            print(locationManager.location?.coordinate.latitude)
+//        }
         
         // Default the location to Berkeley
         // "37.785771,-122.406165"
-        var parameters: [String : AnyObject] = ["term": term as AnyObject, "location": "37.785834,-122.406417" as AnyObject]
+        
+        print(lat)
+        print(long)
+        var locationPara = String(lat) + "," + String(long)
+        
+        var parameters: [String : AnyObject] = ["term": term as AnyObject, "location": locationPara as AnyObject]
         
         
         if sort != nil {
@@ -94,10 +100,18 @@ class YelpClient: AFHTTPRequestOperationManager, CLLocationManagerDelegate {
         })!
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
-    }
-    
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+//        print("locations = \(locValue.latitude) \(locValue.longitude)")
+//        print("update")
+//
+////        let latestLocation = locations.last!
+////        print(latestLocation.coordinate.latitude)
+//
+//    }
+//
+//    func locationManager(_ manager: CLLocationManager, didFailWithError error: Swift.Error) {
+//        print("error")
+//    }
 }
 

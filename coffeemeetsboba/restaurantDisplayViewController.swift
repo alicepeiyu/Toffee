@@ -40,6 +40,7 @@ class restaurantDisplayViewController: UIViewController, UICollectionViewDataSou
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(tea)
         restaurantCollectionView.delegate = self
         restaurantCollectionView.dataSource = self
         // Do any additional setup after loading the view.
