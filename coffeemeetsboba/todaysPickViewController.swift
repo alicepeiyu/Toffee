@@ -12,11 +12,17 @@ import Kingfisher
 
 class todaysPickViewController: UIViewController {
     
+    @IBOutlet weak var numOfPickLeft: UILabel!
     @IBOutlet weak var restaurantImg: UIImageView!
     @IBOutlet weak var restaurantInfoLabel: UILabel!
-    @IBOutlet weak var goButton: UIButton!
-    @IBOutlet weak var browseMoreButton: UIButton!
+    @IBOutlet weak var colorCard: UIImageView!
+    @IBOutlet weak var displayIcon: UIImageView!
+    
+    
     var business: Business?
+    var numOfPick = 1
+    var pickList : [Business]!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,17 +35,44 @@ class todaysPickViewController: UIViewController {
             }
         
         } else{
-            //restaurantImg.kf.setImage(with: teaList[1].imageURL)
+            colorCard.image = UIImage(named:"yellowcard")
+            displayIcon.image = UIImage(named:"tea")
+            
+            
             if let randomElement = coffeeList.randomElement() {
                 restaurantInfoLabel.text = randomElement.name
+                restaurantImg.kf.setImage(with: randomElement.imageURL)
             }
-            
-            
-            
+ 
         }
         
     }
-
+    
+    
+    @IBAction func skip(_ sender: Any) {
+        if numOfPick >= 0{
+            if tea == true{
+                if let randomElement = teaList.randomElement() {
+                    restaurantInfoLabel.text = randomElement.name
+                    restaurantImg.kf.setImage(with: randomElement.imageURL)
+                }
+            } else{
+                if let randomElement = coffeeList.randomElement() {
+                    restaurantInfoLabel.text = randomElement.name
+                    restaurantImg.kf.setImage(with: randomElement.imageURL)
+                }
+                
+            }
+            let numOfPickLeftLabel = "You have " + String(numOfPick) + " pick(s) left"
+            numOfPickLeft.text = numOfPickLeftLabel
+            numOfPick-=1
+        }else{
+            performSegue(withIdentifier: "browseMore", sender: sender)
+        }
+        
+    }
+    
+    
     
     
     

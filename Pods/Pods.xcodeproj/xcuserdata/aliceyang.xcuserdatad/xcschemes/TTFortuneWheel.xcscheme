@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F307289B5157BE668AAB7E04D60ED931"
+               BlueprintIdentifier = "58E0E64820074EA623B8DE195D372FAD"
                BuildableName = "TTFortuneWheel.framework"
                BlueprintName = "TTFortuneWheel"
                ReferencedContainer = "container:Pods.xcodeproj">

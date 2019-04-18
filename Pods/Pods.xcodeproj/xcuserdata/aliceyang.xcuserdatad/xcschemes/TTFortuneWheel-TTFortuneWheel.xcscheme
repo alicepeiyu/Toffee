@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "151475216FEEABE8F9BE30E1CD8BB1BF"
+               BlueprintIdentifier = "D1582BAD6EF4F485A9A46F9B0BC9190E"
                BuildableName = "TTFortuneWheel.bundle"
                BlueprintName = "TTFortuneWheel-TTFortuneWheel"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "151475216FEEABE8F9BE30E1CD8BB1BF"
+            BlueprintIdentifier = "D1582BAD6EF4F485A9A46F9B0BC9190E"
             BuildableName = "TTFortuneWheel.bundle"
             BlueprintName = "TTFortuneWheel-TTFortuneWheel"
             ReferencedContainer = "container:Pods.xcodeproj">
