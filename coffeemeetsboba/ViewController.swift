@@ -90,18 +90,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         performSegue(withIdentifier: "swipeRight", sender: self)
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier != nil{
-//            if let dest = segue.destination as? todaysPickViewController{
-//                if tea == true{
-//
-//                }else{
-//                    tea = false
-//                    print()
-//                }
-//            }
-//        }
-//    }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         print("locations = \(locValue.latitude) \(locValue.longitude)")

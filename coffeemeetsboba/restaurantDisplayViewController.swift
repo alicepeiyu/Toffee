@@ -9,47 +9,61 @@
 import Foundation
 import UIKit
 
-class restaurantDisplayViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
+class restaurantDisplayViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    @IBOutlet weak var restaurantCollectionView: UICollectionView!
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return teaList.count
+    
+    @IBOutlet weak var restaurantTableView: UITableView!
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tea == true{
+            return teaList.count
+        }
+        else{
+            return coffeeList.count
+        }
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "restaurantCollectionViewCell", for: indexPath) as? restaurantCollectionViewCell{
-            //cell.image.image = UIImage(named: teaList[indexPath.item].imageURL)
-            if tea == true{
-                cell.image.kf.setImage(with: teaList[indexPath.item].imageURL)
-                cell.label.text = teaList[indexPath.item].name
-                return cell
-            }else{
-                cell.image.kf.setImage(with: coffeeList[indexPath.item].imageURL)
-                cell.label.text = coffeeList[indexPath.item].name
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if tea == true{
+            if let cell = restaurantTableView.dequeueReusableCell(withIdentifier: "restaurantTableViewCell") as? restaurantTableViewCell{
+                print("tea")
+                cell.restaurantAddress.text = teaList[indexPath.row].address
+                cell.numOfReview.text = teaList[indexPath.row].reviewCount?.stringValue
+                //cell.restaurantImg.kf.setImage(with: teaList[indexPath.row].imageURL)
+                cell.restaurantName.text = teaList[indexPath.row].name
                 return cell
             }
-            
+            return UITableViewCell()
         }
-        return UICollectionViewCell()
+        else{
+            if let cell = restaurantTableView.dequeueReusableCell(withIdentifier: "restaurantTableViewCell") as? restaurantTableViewCell{
+                print("coffee")
+                cell.restaurantAddress.text = coffeeList[indexPath.row].address
+                cell.numOfReview.text = coffeeList[indexPath.row].reviewCount?.stringValue
+                //cell.restaurantImg.kf.setImage(with: coffeeList[indexPath.row].imageURL)
+                cell.restaurantName.text = coffeeList[indexPath.row].name
+                return cell
+            }
+            return UITableViewCell()
+        }
     }
     
-    func collectionView(_ collectionView:UICollectionView, layout collectionViewLayout:UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
-        let dimension = self.restaurantCollectionView.frame.size.width / 2 - 5
-        return CGSize(width:dimension, height:dimension)
-    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print(tea)
-        restaurantCollectionView.delegate = self
-        restaurantCollectionView.dataSource = self
+        restaurantTableView.delegate = self
+        restaurantTableView.dataSource = self
         // Do any additional setup after loading the view.
     }
     
     
 }
 
-class  restaurantCollectionViewCell : UICollectionViewCell {
-    @IBOutlet weak var image: UIImageView!
-    @IBOutlet weak var label: UILabel!
+class  restaurantTableViewCell : UITableViewCell {
+    
+    @IBOutlet weak var numOfReview: UILabel!
+    @IBOutlet weak var restaurantAddress: UILabel!
+    @IBOutlet weak var restaurantName: UILabel!
+    @IBOutlet weak var restaurantImg: UIImageView!
 }

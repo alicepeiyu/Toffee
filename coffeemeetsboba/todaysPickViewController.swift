@@ -63,7 +63,7 @@ class todaysPickViewController: UIViewController {
                 }
                 
             }
-            let numOfPickLeftLabel = "You have " + String(numOfPick) + " pick(s) left"
+            let numOfPickLeftLabel = "You have " + String(numOfPick) + " pick(s) left!"
             numOfPickLeft.text = numOfPickLeftLabel
             numOfPick-=1
         }else{

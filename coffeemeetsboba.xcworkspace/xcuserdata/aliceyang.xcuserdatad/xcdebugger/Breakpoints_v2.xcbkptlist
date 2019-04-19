@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "coffeemeetsboba/todaysPickViewController.swift"
-            timestampString = "577323161.4997981"
+            timestampString = "577343956.902663"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "31"
@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "coffeemeetsboba/ViewController.swift"
-            timestampString = "577323161.5007041"
+            timestampString = "577343956.902994"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "41"
@@ -106,12 +106,122 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "coffeemeetsboba/ViewController.swift"
-            timestampString = "577323161.5010689"
+            timestampString = "577343956.90328"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "40"
             endingLineNumber = "40"
             landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "coffeemeetsboba/restaurantDisplayViewController.swift"
+            timestampString = "577343956.903459"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "restaurantDisplayViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "coffeemeetsboba.restaurantDisplayViewController.restaurantTableView.getter : weak Swift.Optional&lt;__C.UITableView&gt;"
+                  moduleName = "coffeemeetsboba"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aliceyang/iosdecal/coffeemeetsboba/coffeemeetsboba/restaurantDisplayViewController.swift"
+                  timestampString = "577342678.594749"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "86">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "coffeemeetsboba.restaurantDisplayViewController.restaurantTableView.setter : weak Swift.Optional&lt;__C.UITableView&gt;"
+                  moduleName = "coffeemeetsboba"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aliceyang/iosdecal/coffeemeetsboba/coffeemeetsboba/restaurantDisplayViewController.swift"
+                  timestampString = "577342678.600716"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "106">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "coffeemeetsboba.restaurantDisplayViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; coffeemeetsboba.restaurantDisplayViewController"
+                  moduleName = "coffeemeetsboba"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aliceyang/iosdecal/coffeemeetsboba/coffeemeetsboba/restaurantDisplayViewController.swift"
+                  timestampString = "577342678.604941"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "57">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "coffeemeetsboba.restaurantDisplayViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;coffeemeetsboba.restaurantDisplayViewController&gt;"
+                  moduleName = "coffeemeetsboba"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aliceyang/iosdecal/coffeemeetsboba/coffeemeetsboba/restaurantDisplayViewController.swift"
+                  timestampString = "577342678.60859"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "50">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "coffeemeetsboba/restaurantDisplayViewController.swift"
+            timestampString = "577343956.903596"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "coffeemeetsboba/restaurantDisplayViewController.swift"
+            timestampString = "577343956.90369"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
