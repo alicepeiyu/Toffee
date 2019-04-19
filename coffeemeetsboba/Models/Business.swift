@@ -29,8 +29,6 @@ class Business: NSObject {
                     imageURL = nil
                 }
         
-//        imageURL = URL(string: "https://s3-media3.fl.yelpcdn.com/bphoto/0l3pxcpaZL8IyLfSacZa8Q/o.jpg")
-        
         let location = dictionary["location"] as? NSDictionary
         var address = ""
         if location != nil {

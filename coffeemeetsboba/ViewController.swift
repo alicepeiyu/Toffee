@@ -28,30 +28,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         self.locationManager.requestWhenInUseAuthorization()
 
         if CLLocationManager.locationServicesEnabled() {
-            print("yes!")
             locationManager.delegate = self
-            //locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            //locationManager.requestLocation()
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
-            //print(locationManager.location?.coordinate.latitude)
         }
         
-        print(locationManager.location?.coordinate.latitude)
-        
-        // Do any additional setup after loading the view, typically from a nib.
-//        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipe:)))
-//        swipeRight.direction = UISwipeGestureRecognizer.Direction.right
-//        self.view.addGestureRecognizer(swipeRight)
-//
-//        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipe:)))
-//        swipeLeft.direction = UISwipeGestureRecognizer.Direction.left
-//        self.view.addGestureRecognizer(swipeLeft)
-        
+
         if(locationManager.location?.coordinate.latitude != nil){
             Business.searchWithTerm(term: "tea", lat: (locationManager.location?.coordinate.latitude)!, long: (locationManager.location?.coordinate.longitude)!,sort: .distance, categories: ["tea","bubbletea"]) { (businesses, error) in
                 teaList = businesses
                 for business in teaList {
+                    print("TEA")
                     print(business.name!)
                     print(business.address!)
                     //self.slices = [ CarnivalWheelSlice.init(title: business.name!)]
@@ -61,6 +48,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             Business.searchWithTerm(term: "coffee", lat: (locationManager.location?.coordinate.latitude)!, long: (locationManager.location?.coordinate.longitude)!, sort: .distance, categories: ["coffee","coffeeroasteries","coffeeshops"]) { (businesses, error) in
                 coffeeList = businesses
                 for business in coffeeList {
+                    print("COFFEE")
                     print(business.name!)
                     print(business.address!)
                     //self.slices = [ CarnivalWheelSlice.init(title: business.name!)]
@@ -73,21 +61,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
     }
     
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-//        print("locations = \(locValue.latitude) \(locValue.longitude)")
-//        locationValue = locValue
-//    }
-    
+    @IBAction func pickCoffee(_ sender: Any) {
+        tea = false
+        if coffeeList != nil {
+          performSegue(withIdentifier: "swipeRight", sender: self)
+        }
+    }
     
     @IBAction func pickTea(_ sender: Any) {
         tea = true
-        performSegue(withIdentifier: "swipeRight", sender: self)
-    }
-    
-    @IBAction func pickCoffee(_ sender: Any) {
-        tea = false
-        performSegue(withIdentifier: "swipeRight", sender: self)
+        if teaList != nil{
+            performSegue(withIdentifier: "swipeRight", sender: self)
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

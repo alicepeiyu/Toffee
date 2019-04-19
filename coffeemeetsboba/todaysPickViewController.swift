@@ -17,9 +17,9 @@ class todaysPickViewController: UIViewController {
     @IBOutlet weak var restaurantInfoLabel: UILabel!
     @IBOutlet weak var colorCard: UIImageView!
     @IBOutlet weak var displayIcon: UIImageView!
+    @IBOutlet weak var restaurantDistanceLabel: UILabel!
     
-    
-    var business: Business?
+    var selectedBusiness: Business?
     var numOfPick = 1
     var pickList : [Business]!
 
@@ -32,16 +32,18 @@ class todaysPickViewController: UIViewController {
                 //print(randomElement.address)
                 restaurantInfoLabel.text = randomElement.name
                 restaurantImg.kf.setImage(with: randomElement.imageURL)
+                restaurantDistanceLabel.text = randomElement.distance! + " away"
+                selectedBusiness = randomElement
             }
         
         } else{
             colorCard.image = UIImage(named:"yellowcard")
             displayIcon.image = UIImage(named:"tea")
-            
-            
             if let randomElement = coffeeList.randomElement() {
                 restaurantInfoLabel.text = randomElement.name
                 restaurantImg.kf.setImage(with: randomElement.imageURL)
+                restaurantDistanceLabel.text = randomElement.distance! + " away"
+                selectedBusiness = randomElement
             }
  
         }
@@ -55,11 +57,15 @@ class todaysPickViewController: UIViewController {
                 if let randomElement = teaList.randomElement() {
                     restaurantInfoLabel.text = randomElement.name
                     restaurantImg.kf.setImage(with: randomElement.imageURL)
+                    restaurantDistanceLabel.text = randomElement.distance! + " away"
+                    selectedBusiness = randomElement
                 }
             } else{
                 if let randomElement = coffeeList.randomElement() {
                     restaurantInfoLabel.text = randomElement.name
                     restaurantImg.kf.setImage(with: randomElement.imageURL)
+                    restaurantDistanceLabel.text = randomElement.distance! + " away"
+                    selectedBusiness = randomElement
                 }
                 
             }
@@ -73,6 +79,19 @@ class todaysPickViewController: UIViewController {
     }
     
     
+    @IBAction func goToPick(_ sender: Any) {
+        performSegue(withIdentifier: "goToPick", sender: sender)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier != nil{
+            if let dest = segue.destination as? MapViewController{
+                dest.isTea = tea
+                dest.selectedBusiness = self.selectedBusiness
+            }
+        }
+    }
     
     
     
