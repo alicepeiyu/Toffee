@@ -326,6 +326,8 @@
                     </view>
                     <connections>
                         <outlet property="restaurantTableView" destination="zMJ-3p-sko" id="r3u-pa-ZgO"/>
+                        <outlet property="topView" destination="plp-EO-eUb" id="1HD-Mu-DQ6"/>
+                        <outlet property="typeIcon" destination="Nyd-vE-tHG" id="pu0-pG-Dux"/>
                         <segue destination="Gz6-8U-7kT" kind="show" identifier="goToMapView" id="oFm-R9-ycm"/>
                     </connections>
                 </viewController>
@@ -706,6 +708,6 @@
         <image name="yes" width="66" height="107"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="tuA-KV-TOa"/>
+        <segue reference="oFm-R9-ycm"/>
     </inferredMetricsTieBreakers>
 </document>

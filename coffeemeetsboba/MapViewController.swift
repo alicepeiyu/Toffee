@@ -38,6 +38,16 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated);
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: animated);
+        super.viewWillDisappear(animated)
+    }
+    
     func initView(){
         if !isTea{
             typeIcon.image = UIImage(named: "coffeeblack")

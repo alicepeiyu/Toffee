@@ -34,6 +34,7 @@ class todaysPickViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         // Create the Activity Indicator
         let activityIndicator = UIActivityIndicatorView(style: .gray)
         

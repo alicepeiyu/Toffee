@@ -22,7 +22,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
         //For use in foreground
         self.locationManager.requestWhenInUseAuthorization()
 

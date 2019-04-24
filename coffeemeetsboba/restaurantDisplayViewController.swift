@@ -15,6 +15,8 @@ class restaurantDisplayViewController: UIViewController, UITableViewDataSource, 
     var coffeeList: [Business]!
     var isTea: Bool!
     
+    @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var typeIcon: UIImageView!
     
     @IBOutlet weak var restaurantTableView: UITableView!
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -88,6 +90,10 @@ class restaurantDisplayViewController: UIViewController, UITableViewDataSource, 
         restaurantTableView.delegate = self
         restaurantTableView.dataSource = self
         // Do any additional setup after loading the view.
+        if !isTea{
+            typeIcon.image = UIImage(named: "coffeeblack")
+            topView.backgroundColor = UIColor(red:1.00, green:0.94, blue:0.41, alpha:1.0)
+        }
     }
     
     
