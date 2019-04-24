@@ -35,9 +35,7 @@ class FindPeerViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        NSLog("cellForRowAt")
         if let cell = tableView.dequeueReusableCell(withIdentifier: "peerCell") as? peerCell{
-            NSLog("PeerCell")
             cell.nameLabel.text = chatService.foundPeers[indexPath.row].displayName
             return cell
         }
@@ -47,7 +45,7 @@ class FindPeerViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         selectedPeer = chatService.foundPeers[indexPath.row]
-        performSegue(withIdentifier: "goToChatView", sender: self)
+        self.chatService.invitePeer(peer: selectedPeer!)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -59,6 +57,8 @@ class FindPeerViewController: UIViewController, UITableViewDelegate, UITableView
             if let dest = segue.destination as? ChatViewController{
                 dest.peer = selectedPeer
                 dest.chatService = self.chatService
+                let dataSource = ChatDataSource(messages: [], pageSize: 50)
+                dest.dataSource = dataSource
             }
         }
     }
@@ -73,14 +73,33 @@ class FindPeerViewController: UIViewController, UITableViewDelegate, UITableView
         peerTable.reloadData()
     }
     
-    func invitationWasReceived(fromPeer: String){
+    func invitationWasReceived(peerID: MCPeerID){
+        let alert = UIAlertController(title: "", message: "\(peerID.displayName) wants to chat with you.", preferredStyle: UIAlertController.Style.alert)
         
+        let acceptAction: UIAlertAction = UIAlertAction(title: "Accept", style: UIAlertAction.Style.default) { (alertAction) -> Void in
+            self.chatService.invitationHandler(true, self.chatService.session)
+            self.selectedPeer = peerID
+        }
+        
+        let declineAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) { (alertAction) -> Void in
+            self.chatService.invitationHandler(false, nil)
+        }
+        
+        alert.addAction(acceptAction)
+        alert.addAction(declineAction)
+        
+        OperationQueue.main.addOperation { () -> Void in
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     func connectedWithPeer(peerID: MCPeerID){
-        
+        performSegue(withIdentifier: "goToChatView", sender: self)
     }
     
+    func receiveMessage(text: String){
+        NSLog("receiveMessage")
+    }
 }
 
 class peerCell: UITableViewCell {

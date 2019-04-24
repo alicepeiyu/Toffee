@@ -13,6 +13,9 @@ import Foundation
 protocol ChatServiceDelegate : class {
     func foundPeer()
     func lostPeer()
+    func invitationWasReceived(peerID: MCPeerID)
+    func connectedWithPeer(peerID: MCPeerID)
+    func receiveMessage(text: String)
 }
 
 class ChatService: NSObject {
@@ -31,6 +34,7 @@ class ChatService: NSObject {
     }()
     
     var foundPeers = [MCPeerID]()
+    var invitationHandler: ((Bool, MCSession!)->Void)!
     
     override init() {
         
@@ -38,7 +42,6 @@ class ChatService: NSObject {
         self.serviceBrowser = MCNearbyServiceBrowser(peer: myPeerId, serviceType: chatServiceType)
         
         super.init()
-        NSLog("Init ChatService")
         self.serviceAdvertiser.delegate = self
         self.serviceAdvertiser.startAdvertisingPeer()
         
@@ -47,9 +50,22 @@ class ChatService: NSObject {
     }
     
     deinit {
-        NSLog("Deinit ChatService")
         self.serviceAdvertiser.stopAdvertisingPeer()
         self.serviceBrowser.stopBrowsingForPeers()
+    }
+    
+    public func invitePeer(peer : MCPeerID){
+        self.serviceBrowser.invitePeer(peer, to: self.session, withContext: nil, timeout: 20)
+    }
+    
+    func sendData(text : String, toPeer targetPeer: MCPeerID) -> Bool {
+        let peersArray = [targetPeer]
+        do {
+            try session.send(text.data(using: .utf8)!, toPeers: peersArray, with: .reliable)
+        } catch let error as NSError {
+            return false
+        }
+        return true
     }
     
 }
@@ -60,10 +76,11 @@ extension ChatService : MCNearbyServiceAdvertiserDelegate {
         NSLog("%@", "didNotStartAdvertisingPeer: \(error)")
     }
     
-    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-        NSLog("%@", "didReceiveInvitationFromPeer \(peerID)")
-    }
     
+    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping ((Bool, MCSession?) -> Void)) {
+        self.invitationHandler = invitationHandler
+        delegate?.invitationWasReceived(peerID: peerID)
+    }
 }
 
 extension ChatService : MCNearbyServiceBrowserDelegate {
@@ -94,10 +111,22 @@ extension ChatService : MCSessionDelegate {
     
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         NSLog("%@", "peer \(peerID) didChangeState: \(state.rawValue)")
+        switch state{
+        case MCSessionState.connected:
+            print("Connected to session: \(session)")
+            delegate?.connectedWithPeer(peerID: peerID)
+            
+        case MCSessionState.connecting:
+            print("Connecting to session: \(session)")
+            
+        default:
+            print("Did not connect to session: \(session)")
+        }
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         NSLog("%@", "didReceiveData: \(data)")
+        delegate?.receiveMessage(text: String(data: data, encoding: .utf8)!)
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {

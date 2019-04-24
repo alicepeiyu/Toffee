@@ -11,16 +11,32 @@ import MultipeerConnectivity
 import Chatto
 import ChattoAdditions
 
-class ChatViewController: BaseChatViewController {
+class ChatViewController: BaseChatViewController, ChatServiceDelegate {
 
     var peer : MCPeerID?
     var chatService: ChatService?
+    var messageSender: ChatMessageSender!
+    let messagesSelector = BaseMessagesSelector()
+    
+    lazy private var baseMessageHandler: BaseMessageHandler = {
+        return BaseMessageHandler(messageSender: self.messageSender, messagesSelector: self.messagesSelector)
+    }()
+    
+    var dataSource: ChatDataSource! {
+        didSet {
+            self.chatDataSource = self.dataSource
+            self.messageSender = self.dataSource.messageSender
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.chatService!.delegate = self
         // Do any additional setup after loading the view.
-//        self.chatDataSource =
+//        self.messagesSelector.delegate = self
+        
+        self.chatItemsDecorator = ToffeeChatItemsDecorator(messagesSelector: self.messagesSelector)
     }
     
     var chatInputPresenter: BasicChatInputBarPresenter!
@@ -46,7 +62,14 @@ class ChatViewController: BaseChatViewController {
         let item = TextChatInputItem()
         item.textInputHandler = { [weak self] text in
             // Your handling logic
-        }
+            if (self?.chatService?.sendData(text: text, toPeer: self!.peer!))!{
+                self?.dataSource.addTextMessage(text, success: true)
+            }
+            else{
+                print("Could not send data")
+                self?.dataSource.addTextMessage(text, success : false)
+            }
+            }
         return item
     }
     
@@ -57,10 +80,39 @@ class ChatViewController: BaseChatViewController {
 //        }
 //        return item
 //    }
+    
      override func createPresenterBuilders() -> [ChatItemType: [ChatItemPresenterBuilderProtocol]] {
-        return [ChatItemType: [ChatItemPresenterBuilderProtocol]]()
-    }
+        let textMessagePresenter = TextMessagePresenterBuilder(
+            viewModelBuilder: ToffeeTextMessageViewModelBuilder(),
+            interactionHandler: GenericMessageHandler(baseHandler: self.baseMessageHandler)
+        )
+        textMessagePresenter.baseMessageStyle = BaseMessageCollectionViewCellAvatarStyle()
 
+        
+        return [
+            ToffeeTextMessageModel.chatItemType: [textMessagePresenter]
+        ]
+    }
+    func receiveMessage(text: String) {
+        self.dataSource.addIncomingTextMessage(text)
+    }
+    
+    func foundPeer() {
+        
+    }
+    
+    func lostPeer() {
+        
+    }
+    
+    func invitationWasReceived(peerID: MCPeerID) {
+        
+    }
+    
+    func connectedWithPeer(peerID: MCPeerID) {
+        
+    }
+    
     /*
     // MARK: - Navigation
 
