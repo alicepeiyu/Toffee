@@ -17,6 +17,8 @@ class ChatViewController: BaseChatViewController, ChatServiceDelegate {
     var chatService: ChatService?
     var messageSender: ChatMessageSender!
     let messagesSelector = BaseMessagesSelector()
+    var chatInputView : UIView?
+    var isLeftChatRoomInitiated : Bool = false
     
     lazy private var baseMessageHandler: BaseMessageHandler = {
         return BaseMessageHandler(messageSender: self.messageSender, messagesSelector: self.messagesSelector)
@@ -31,12 +33,25 @@ class ChatViewController: BaseChatViewController, ChatServiceDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.chatService!.delegate = self
         // Do any additional setup after loading the view.
 //        self.messagesSelector.delegate = self
         
         self.chatItemsDecorator = ToffeeChatItemsDecorator(messagesSelector: self.messagesSelector)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+        if self.isMovingFromParent {
+            self.isLeftChatRoomInitiated = true
+            self.chatService?.session.disconnect()
+        }
     }
     
     var chatInputPresenter: BasicChatInputBarPresenter!
@@ -48,7 +63,8 @@ class ChatViewController: BaseChatViewController, ChatServiceDelegate {
         appearance.textInputAppearance.placeholderText = NSLocalizedString("Type a message", comment: "")
         self.chatInputPresenter = BasicChatInputBarPresenter(chatInputBar: chatInputView, chatInputItems: self.createChatInputItems(), chatInputBarAppearance: appearance)
         chatInputView.maxCharactersCount = 1000
-        return chatInputView
+        self.chatInputView = chatInputView
+        return self.chatInputView!
     }
     
     func createChatInputItems() -> [ChatInputItemProtocol] {
@@ -113,6 +129,18 @@ class ChatViewController: BaseChatViewController, ChatServiceDelegate {
         
     }
     
+    func connectionFailed() {
+        if !isLeftChatRoomInitiated{
+            OperationQueue.main.addOperation { () -> Void in
+                self.chatInputView?.isUserInteractionEnabled = false
+                let alert = UIAlertController(title: "", message: "\(self.peer!.displayName) left chat room.", preferredStyle: UIAlertController.Style.alert)
+                let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel) { (alertAction) -> Void in
+                }
+                alert.addAction(okAction)
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
     /*
     // MARK: - Navigation
 

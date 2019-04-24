@@ -19,14 +19,32 @@ class FindPeerViewController: UIViewController, UITableViewDelegate, UITableView
     
     var selectedPeer : MCPeerID?
     
+    var alert : UIAlertController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        chatService.delegate = self
         peerTable.delegate = self
         peerTable.dataSource = self
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        chatService.delegate = self
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        if let selectedRow = peerTable.indexPathForSelectedRow {
+            peerTable.deselectRow(at: selectedRow, animated: true)
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
     
     // MARK: - UITableViewDataSource
     
@@ -43,9 +61,11 @@ class FindPeerViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         selectedPeer = chatService.foundPeers[indexPath.row]
+        self.alert = UIAlertController(title: "", message: " Waiting for \(selectedPeer!.displayName) to respond.", preferredStyle: UIAlertController.Style.alert)
+        self.present(self.alert!, animated: true, completion: nil)
         self.chatService.invitePeer(peer: selectedPeer!)
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -74,32 +94,39 @@ class FindPeerViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func invitationWasReceived(peerID: MCPeerID){
-        let alert = UIAlertController(title: "", message: "\(peerID.displayName) wants to chat with you.", preferredStyle: UIAlertController.Style.alert)
-        
-        let acceptAction: UIAlertAction = UIAlertAction(title: "Accept", style: UIAlertAction.Style.default) { (alertAction) -> Void in
-            self.chatService.invitationHandler(true, self.chatService.session)
-            self.selectedPeer = peerID
-        }
-        
-        let declineAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) { (alertAction) -> Void in
-            self.chatService.invitationHandler(false, nil)
-        }
-        
-        alert.addAction(acceptAction)
-        alert.addAction(declineAction)
-        
         OperationQueue.main.addOperation { () -> Void in
+            let alert = UIAlertController(title: "", message: "\(peerID.displayName) wants to chat with you.", preferredStyle: UIAlertController.Style.alert)
+            
+            let acceptAction: UIAlertAction = UIAlertAction(title: "Accept", style: UIAlertAction.Style.default) { (alertAction) -> Void in
+                self.chatService.invitationHandler(true, self.chatService.session)
+                self.selectedPeer = peerID
+            }
+            
+            let declineAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) { (alertAction) -> Void in
+                self.chatService.invitationHandler(false, nil)
+            }
+            
+            alert.addAction(acceptAction)
+            alert.addAction(declineAction)
             self.present(alert, animated: true, completion: nil)
         }
     }
     
     func connectedWithPeer(peerID: MCPeerID){
-        performSegue(withIdentifier: "goToChatView", sender: self)
+        OperationQueue.main.addOperation { () -> Void in
+            self.alert?.dismiss(animated: true, completion: nil)
+            self.performSegue(withIdentifier: "goToChatView", sender: self)
+        }
     }
     
     func receiveMessage(text: String){
         NSLog("receiveMessage")
     }
+    
+    func connectionFailed() {
+        self.alert?.dismiss(animated: true, completion: nil)
+    }
+    
 }
 
 class peerCell: UITableViewCell {

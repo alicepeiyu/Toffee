@@ -15,7 +15,9 @@ protocol ChatServiceDelegate : class {
     func lostPeer()
     func invitationWasReceived(peerID: MCPeerID)
     func connectedWithPeer(peerID: MCPeerID)
+    func connectionFailed()
     func receiveMessage(text: String)
+    
 }
 
 class ChatService: NSObject {
@@ -28,7 +30,7 @@ class ChatService: NSObject {
     weak var delegate: ChatServiceDelegate?
     
     lazy var session : MCSession = {
-        let session = MCSession(peer: self.myPeerId, securityIdentity: nil, encryptionPreference: .required)
+        let session = MCSession(peer: self.myPeerId, securityIdentity: nil, encryptionPreference: .none)
         session.delegate = self
         return session
     }()
@@ -115,10 +117,11 @@ extension ChatService : MCSessionDelegate {
         case MCSessionState.connected:
             print("Connected to session: \(session)")
             delegate?.connectedWithPeer(peerID: peerID)
-            
         case MCSessionState.connecting:
             print("Connecting to session: \(session)")
-            
+        case MCSessionState.notConnected:
+            print("Session not connected: \(session)")
+            delegate?.connectionFailed()
         default:
             print("Did not connect to session: \(session)")
         }
