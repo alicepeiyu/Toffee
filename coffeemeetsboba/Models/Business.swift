@@ -17,16 +17,43 @@ class Business: NSObject {
     let distance: String?
     let ratingImage: UIImage?
     let reviewCount: NSNumber?
+    let url: URL?
+    let price: String?
+    let long: Double?
+    let lat: Double?
     
     init(dictionary: NSDictionary) {
+        let range = dictionary["price"] as? String
+        if range != nil{
+            price = range
+        }else{
+            price = nil
+        }
+        
+        let URLString = dictionary["url"] as? String
+        if !URLString!.isEmpty {
+            url = URL(string: URLString!)!
+        } else {
+            url = nil
+        }
+        
         name = dictionary["name"] as? String
         
-                let imageURLString = dictionary["image_url"] as? String
-                
+        let coordinates = dictionary["coordinates"] as? NSDictionary
+        if coordinates != nil{
+            long = coordinates!["longitude"] as? Double
+            lat = coordinates!["latitude"] as? Double
+        } else{
+            long = nil
+            lat = nil
+        }
+        
+        
+        let imageURLString = dictionary["image_url"] as? String
         if !imageURLString!.isEmpty {
                     imageURL = URL(string: imageURLString!)!
                 } else {
-                    imageURL = nil
+            imageURL = URL(string: "https://s3-media1.fl.yelpcdn.com/assets/srv0/yelp_styleguide/4f30aa60678e/assets/img/default_avatars/business_large_square.png")
                 }
         
         let location = dictionary["location"] as? NSDictionary
@@ -109,7 +136,9 @@ class Business: NSObject {
         var businesses = [Business]()
         for dictionary in array {
             let business = Business(dictionary: dictionary)
-            businesses.append(business)
+            if (business.name != "Starbucks" && business.name != "7-Eleven" && business.name != "McDonald\'s") {
+               businesses.append(business)
+            }
         }
         return businesses
     }
@@ -119,7 +148,7 @@ class Business: NSObject {
     }
     
     class func searchWithTerm(term: String, lat:CLLocationDegrees, long:CLLocationDegrees, sort: YelpSortMode?, categories: [String]?, completion: @escaping ([Business]?, Error?) -> Void) -> Void {
-        _ = YelpClient.sharedInstance.searchWithTerm(term, lat: lat,long: long,sort: sort, categories: categories, openNow: false, completion: completion)
+        _ = YelpClient.sharedInstance.searchWithTerm(term, lat: lat,long: long,sort: sort, categories: categories, openNow: nil, completion: completion)
     }
 }
 
