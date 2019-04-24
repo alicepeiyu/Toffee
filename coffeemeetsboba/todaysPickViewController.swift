@@ -11,6 +11,7 @@ import UIKit
 import Kingfisher
 import CoreLocation
 
+
 class todaysPickViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var numOfPickLeft: UILabel!
@@ -33,15 +34,25 @@ class todaysPickViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Create the Activity Indicator
+        let activityIndicator = UIActivityIndicatorView(style: .gray)
+        
+        // Add it to the view where you want it to appear
+        view.addSubview(activityIndicator)
+        
+        // Set up its size (the super view bounds usually)
+        activityIndicator.frame = view.bounds
+        
+        // Start the loading animation
+        activityIndicator.startAnimating()
+        
+        // To remove it, just call removeFromSuperview()
+        //activityIndicator.removeFromSuperview()
+        
         if isTea{
             Business.searchWithTerm(term: "tea", lat: lat, long: long,sort: .distance, categories: ["tea","bubbletea"]) { (businesses, error) in
                 self.teaList = businesses
-                            for business in self.teaList {
-//                                print("TEA")
-                                print(business.price)
-                                print(business.url)
-                                //self.slices = [ CarnivalWheelSlice.init(title: business.name!)]
-                            }
+                activityIndicator.removeFromSuperview()
                 if let randomElement = self.teaList.randomElement() {
                     //print(randomElement.address)
                     self.restaurantInfoLabel.text = randomElement.name
@@ -55,12 +66,7 @@ class todaysPickViewController: UIViewController, CLLocationManagerDelegate {
             self.displayIcon.image = UIImage(named:"tea")
             Business.searchWithTerm(term: "coffee", lat: lat, long: long, sort: .distance, categories: ["coffee","coffeeroasteries","coffeeshops"]) { (businesses, error) in
                 self.coffeeList = businesses
-                for business in self.coffeeList {
-                    print("COFFEE")
-                    print(business.price)
-                    print(business.url)
-                    //self.slices = [ CarnivalWheelSlice.init(title: business.name!)]
-                }
+                activityIndicator.removeFromSuperview()
                 if let randomElement = self.coffeeList.randomElement() {
                     self.restaurantInfoLabel.text = randomElement.name
                     self.restaurantImg.kf.setImage(with: randomElement.imageURL)

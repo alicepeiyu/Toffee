@@ -76,6 +76,8 @@ class YelpClient: AFHTTPRequestOperationManager {
             parameters["sort_by"] = sort!.rawValue as AnyObject?
         }
         
+        //sort?.rawValue
+        
         if categories != nil && categories!.count > 0 {
             parameters["categories"] = (categories!).joined(separator: ",") as AnyObject?
         }
@@ -83,6 +85,7 @@ class YelpClient: AFHTTPRequestOperationManager {
         if openNow != nil {
             parameters["open_now"] = openNow! as AnyObject
         }
+        
         
         print(parameters)
         
