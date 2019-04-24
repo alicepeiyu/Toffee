@@ -9,8 +9,9 @@
 import Foundation
 import UIKit
 import Kingfisher
+import CoreLocation
 
-class todaysPickViewController: UIViewController {
+class todaysPickViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var numOfPickLeft: UILabel!
     @IBOutlet weak var restaurantImg: UIImageView!
@@ -21,47 +22,90 @@ class todaysPickViewController: UIViewController {
     
     var selectedBusiness: Business?
     var numOfPick = 1
-    var pickList : [Business]!
-
+    
+    var teaList: [Business]!
+    var coffeeList: [Business]!
+    var isTea: Bool!
+    
+    var lat:CLLocationDegrees!
+    var long:CLLocationDegrees!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if tea == true{
-            if let randomElement = teaList.randomElement() {
-                //print(randomElement.address)
-                restaurantInfoLabel.text = randomElement.name
-                restaurantImg.kf.setImage(with: randomElement.imageURL)
-                restaurantDistanceLabel.text = randomElement.distance! + " away"
-                selectedBusiness = randomElement
+        if isTea{
+            Business.searchWithTerm(term: "tea", lat: lat, long: long,sort: .distance, categories: ["tea","bubbletea"]) { (businesses, error) in
+                self.teaList = businesses
+                            for business in self.teaList {
+//                                print("TEA")
+                                print(business.price)
+                                print(business.url)
+                                //self.slices = [ CarnivalWheelSlice.init(title: business.name!)]
+                            }
+                if let randomElement = self.teaList.randomElement() {
+                    //print(randomElement.address)
+                    self.restaurantInfoLabel.text = randomElement.name
+                    self.restaurantImg.kf.setImage(with: randomElement.imageURL)
+                    self.restaurantDistanceLabel.text = randomElement.distance! + " away"
+                    self.selectedBusiness = randomElement
+                }
             }
-        
-        } else{
-            colorCard.image = UIImage(named:"yellowcard")
-            displayIcon.image = UIImage(named:"tea")
-            if let randomElement = coffeeList.randomElement() {
-                restaurantInfoLabel.text = randomElement.name
-                restaurantImg.kf.setImage(with: randomElement.imageURL)
-                restaurantDistanceLabel.text = randomElement.distance! + " away"
-                selectedBusiness = randomElement
+        }else{
+            self.colorCard.image = UIImage(named:"yellowcard")
+            self.displayIcon.image = UIImage(named:"tea")
+            Business.searchWithTerm(term: "coffee", lat: lat, long: long, sort: .distance, categories: ["coffee","coffeeroasteries","coffeeshops"]) { (businesses, error) in
+                self.coffeeList = businesses
+                for business in self.coffeeList {
+                    print("COFFEE")
+                    print(business.price)
+                    print(business.url)
+                    //self.slices = [ CarnivalWheelSlice.init(title: business.name!)]
+                }
+                if let randomElement = self.coffeeList.randomElement() {
+                    self.restaurantInfoLabel.text = randomElement.name
+                    self.restaurantImg.kf.setImage(with: randomElement.imageURL)
+                    self.restaurantDistanceLabel.text = randomElement.distance! + " away"
+                    self.selectedBusiness = randomElement
+                }
             }
- 
         }
+
+        
+//        if isTea == true{
+//            if let randomElement = self.teaList.randomElement() {
+//                //print(randomElement.address)
+//                restaurantInfoLabel.text = randomElement.name
+//                restaurantImg.kf.setImage(with: randomElement.imageURL)
+//                restaurantDistanceLabel.text = randomElement.distance! + " away"
+//                selectedBusiness = randomElement
+//            }
+//
+//        } else{
+//            colorCard.image = UIImage(named:"yellowcard")
+//            displayIcon.image = UIImage(named:"tea")
+//            if let randomElement = self.coffeeList.randomElement() {
+//                restaurantInfoLabel.text = randomElement.name
+//                restaurantImg.kf.setImage(with: randomElement.imageURL)
+//                restaurantDistanceLabel.text = randomElement.distance! + " away"
+//                selectedBusiness = randomElement
+//            }
+//
+//        }
         
     }
     
     
     @IBAction func skip(_ sender: Any) {
         if numOfPick >= 0{
-            if tea == true{
-                if let randomElement = teaList.randomElement() {
+            if isTea == true{
+                if let randomElement = self.teaList.randomElement() {
                     restaurantInfoLabel.text = randomElement.name
                     restaurantImg.kf.setImage(with: randomElement.imageURL)
                     restaurantDistanceLabel.text = randomElement.distance! + " away"
                     selectedBusiness = randomElement
                 }
             } else{
-                if let randomElement = coffeeList.randomElement() {
+                if let randomElement = self.coffeeList.randomElement() {
                     restaurantInfoLabel.text = randomElement.name
                     restaurantImg.kf.setImage(with: randomElement.imageURL)
                     restaurantDistanceLabel.text = randomElement.distance! + " away"
@@ -87,12 +131,19 @@ class todaysPickViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier != nil{
             if let dest = segue.destination as? MapViewController{
-                dest.isTea = tea
+                dest.isTea = self.isTea
                 dest.selectedBusiness = self.selectedBusiness
+            }
+            
+            if let dest2 = segue.destination as? restaurantDisplayViewController{
+                dest2.isTea = self.isTea
+                dest2.coffeeList = self.coffeeList
+                dest2.teaList = self.teaList
             }
         }
     }
     
+
     
     
 }

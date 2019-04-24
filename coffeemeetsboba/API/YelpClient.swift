@@ -69,7 +69,7 @@ class YelpClient: AFHTTPRequestOperationManager {
         print(long)
         var locationPara = String(lat) + "," + String(long)
         
-        var parameters: [String : AnyObject] = ["term": term as AnyObject, "location": locationPara as AnyObject]
+        var parameters: [String : AnyObject] = ["term": term as AnyObject, "location": locationPara as AnyObject, "limit": 50 as AnyObject]
         
         
         if sort != nil {

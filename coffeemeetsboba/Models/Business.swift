@@ -17,12 +17,39 @@ class Business: NSObject {
     let distance: String?
     let ratingImage: UIImage?
     let reviewCount: NSNumber?
+    let url: URL?
+    let price: String?
+    let long: Double?
+    let lat: Double?
     
     init(dictionary: NSDictionary) {
+        let range = dictionary["price"] as? String
+        if range != nil{
+            price = range
+        }else{
+            price = nil
+        }
+        
+        let URLString = dictionary["url"] as? String
+        if !URLString!.isEmpty {
+            url = URL(string: URLString!)!
+        } else {
+            url = nil
+        }
+        
         name = dictionary["name"] as? String
         
-                let imageURLString = dictionary["image_url"] as? String
-                
+        let coordinates = dictionary["coordinates"] as? NSDictionary
+        if coordinates != nil{
+            long = coordinates!["longitude"] as? Double
+            lat = coordinates!["latitude"] as? Double
+        } else{
+            long = nil
+            lat = nil
+        }
+        
+        
+        let imageURLString = dictionary["image_url"] as? String
         if !imageURLString!.isEmpty {
                     imageURL = URL(string: imageURLString!)!
                 } else {
@@ -109,7 +136,9 @@ class Business: NSObject {
         var businesses = [Business]()
         for dictionary in array {
             let business = Business(dictionary: dictionary)
-            businesses.append(business)
+            if (business.name != "Starbucks" && business.name != "7-Eleven" && business.name != "McDonald\'s") {
+               businesses.append(business)
+            }
         }
         return businesses
     }

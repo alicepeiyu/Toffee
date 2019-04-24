@@ -11,26 +11,31 @@ import UIKit
 
 class restaurantDisplayViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var selectedBusiness: Business?
+    var teaList: [Business]!
+    var coffeeList: [Business]!
+    var isTea: Bool!
     
     
     @IBOutlet weak var restaurantTableView: UITableView!
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tea == true{
-            return teaList.count
+        if isTea == true{
+            return self.teaList.count
         }
         else{
-            return coffeeList.count
+            return self.coffeeList.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if tea == true{
+        if isTea == true{
             if let cell = restaurantTableView.dequeueReusableCell(withIdentifier: "restaurantTableViewCell") as? restaurantTableViewCell{
                 print("tea")
                 cell.restaurantAddress.text = teaList[indexPath.row].address
-                cell.numOfReview.text = teaList[indexPath.row].reviewCount?.stringValue
+                cell.numOfReview.text = (teaList[indexPath.row].reviewCount?.stringValue)! + " reviews"
                 cell.restaurantImg.kf.setImage(with: teaList[indexPath.row].imageURL)
                 cell.restaurantName.text = teaList[indexPath.row].name
+                cell.restaurantName.font = UIFont(name:"Montserrat-Bold", size: 14.0)
+                cell.restaurantDistance.text = teaList[indexPath.row].distance
                 cell.ratingImg.image = teaList[indexPath.row].ratingImage
                 return cell
             }
@@ -40,10 +45,13 @@ class restaurantDisplayViewController: UIViewController, UITableViewDataSource, 
             if let cell = restaurantTableView.dequeueReusableCell(withIdentifier: "restaurantTableViewCell") as? restaurantTableViewCell{
                 print("coffee")
                 cell.restaurantAddress.text = coffeeList[indexPath.row].address
-                cell.numOfReview.text = coffeeList[indexPath.row].reviewCount?.stringValue
+                cell.numOfReview.text = (coffeeList[indexPath.row].reviewCount?.stringValue)! + " reviews"
                 cell.restaurantImg.kf.setImage(with: coffeeList[indexPath.row].imageURL)
                 cell.restaurantName.text = coffeeList[indexPath.row].name
+                cell.restaurantName.font = UIFont(name:"Montserrat-Bold", size: 14.0)
                 cell.ratingImg.image = coffeeList[indexPath.row].ratingImage
+                cell.restaurantDistance.text = coffeeList[indexPath.row].distance
+                print(coffeeList[indexPath.row].distance)
                 return cell
             }
             return UITableViewCell()
@@ -51,22 +59,22 @@ class restaurantDisplayViewController: UIViewController, UITableViewDataSource, 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tea == true{
-            selectedBusiness = teaList[indexPath.row]
+        if isTea == true{
+            selectedBusiness = self.teaList[indexPath.row]
         }else{
-            selectedBusiness = coffeeList[indexPath.row]
+            selectedBusiness = self.coffeeList[indexPath.row]
         }
         performSegue(withIdentifier: "goToMapView", sender: self)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80.0
+        return 100.0
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier != nil{
             if let dest = segue.destination as? MapViewController{
-                dest.isTea = tea
+                dest.isTea = self.isTea
                 dest.selectedBusiness = self.selectedBusiness
             }
         }
@@ -76,7 +84,7 @@ class restaurantDisplayViewController: UIViewController, UITableViewDataSource, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(tea)
+        //print(tea)
         restaurantTableView.delegate = self
         restaurantTableView.dataSource = self
         // Do any additional setup after loading the view.
@@ -92,4 +100,6 @@ class  restaurantTableViewCell : UITableViewCell {
     @IBOutlet weak var restaurantName: UILabel!
     @IBOutlet weak var restaurantImg: UIImageView!
     @IBOutlet weak var ratingImg: UIImageView!
+    @IBOutlet weak var restaurantDistance: UILabel!
+    
 }

@@ -54,7 +54,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         // init map view
         let store = MKPointAnnotation()
         store.title = selectedBusiness.name
-        let coordinate = CLLocationCoordinate2D(latitude: 37.872574, longitude: -122.260748)
+        let coordinate = CLLocationCoordinate2D(latitude: selectedBusiness.lat!, longitude: selectedBusiness.long! )
+//        let coordinate = CLLocationCoordinate2D(latitude: 37.872574, longitude: -122.260748) Double(selectedBusiness!.long as NSNumber)
+        
         store.coordinate = coordinate
         mapView.setRegion(MKCoordinateRegion(center: coordinate, latitudinalMeters: 1500, longitudinalMeters: 1500), animated: true)
         mapView.addAnnotation(store)
