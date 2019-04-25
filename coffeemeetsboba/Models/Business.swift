@@ -21,8 +21,17 @@ class Business: NSObject {
     let price: String?
     let long: Double?
     let lat: Double?
+    let phone: String?
     
     init(dictionary: NSDictionary) {
+        let phoneNum = dictionary["phone"] as? String
+        if phoneNum != nil{
+            phone = phoneNum
+        } else{
+            phone = nil
+        }
+        
+        
         let range = dictionary["price"] as? String
         if range != nil{
             price = range

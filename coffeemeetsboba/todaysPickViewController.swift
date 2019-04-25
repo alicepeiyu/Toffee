@@ -17,9 +17,13 @@ class todaysPickViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var numOfPickLeft: UILabel!
     @IBOutlet weak var restaurantImg: UIImageView!
     @IBOutlet weak var restaurantInfoLabel: UILabel!
-    @IBOutlet weak var colorCard: UIImageView!
-    @IBOutlet weak var displayIcon: UIImageView!
+    @IBOutlet weak var topView: UIView!
+    
+    @IBOutlet weak var typeIcon: UIImageView!
     @IBOutlet weak var restaurantDistanceLabel: UILabel!
+    
+    @IBOutlet weak var promotionButton: UIButton!
+    @IBOutlet weak var pickView: UIView!
     
     var selectedBusiness: Business?
     var numOfPick = 1
@@ -30,10 +34,15 @@ class todaysPickViewController: UIViewController, CLLocationManagerDelegate {
     
     var lat:CLLocationDegrees!
     var long:CLLocationDegrees!
+    var promotionList = ["20% off first visit!", "Free size upgrade!", "Most users are here!", "10% off everything", "Our user's favorite", "$1 off", "25% off from 1pm-4pm"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if !isTea{
+            typeIcon.image = UIImage(named: "coffeeblack")
+            topView.backgroundColor = UIColor(red:1.00, green:0.94, blue:0.41, alpha:1.0)
+        }
+        self.pickView.layer.applySketchShadow(color: .black, alpha: 0.5, x: 8, y: 8, blur: 20, spread: -8)
         
         // Create the Activity Indicator
         let activityIndicator = UIActivityIndicatorView(style: .gray)
@@ -55,16 +64,16 @@ class todaysPickViewController: UIViewController, CLLocationManagerDelegate {
                 self.teaList = businesses
                 activityIndicator.removeFromSuperview()
                 if let randomElement = self.teaList.randomElement() {
-                    //print(randomElement.address)
+                    print(randomElement.phone)
                     self.restaurantInfoLabel.text = randomElement.name
                     self.restaurantImg.kf.setImage(with: randomElement.imageURL)
                     self.restaurantDistanceLabel.text = randomElement.distance! + " away"
+                    self.promotionButton.setTitle(self.promotionList.randomElement(), for: .normal)
+                    self.promotionButton.backgroundColor = UIColor(red:0.40, green:0.85, blue:0.60, alpha:1.0)
                     self.selectedBusiness = randomElement
                 }
             }
         }else{
-            self.colorCard.image = UIImage(named:"yellowcard")
-            self.displayIcon.image = UIImage(named:"tea")
             Business.searchWithTerm(term: "coffee", lat: lat, long: long, sort: .distance, categories: ["coffee","coffeeroasteries","coffeeshops"]) { (businesses, error) in
                 self.coffeeList = businesses
                 activityIndicator.removeFromSuperview()
@@ -72,6 +81,8 @@ class todaysPickViewController: UIViewController, CLLocationManagerDelegate {
                     self.restaurantInfoLabel.text = randomElement.name
                     self.restaurantImg.kf.setImage(with: randomElement.imageURL)
                     self.restaurantDistanceLabel.text = randomElement.distance! + " away"
+                    self.promotionButton.setTitle(self.promotionList.randomElement(), for: .normal)
+                    self.promotionButton.backgroundColor = UIColor(red:1.00, green:0.94, blue:0.41, alpha:1.0)
                     self.selectedBusiness = randomElement
                 }
             }
@@ -109,6 +120,7 @@ class todaysPickViewController: UIViewController, CLLocationManagerDelegate {
                     restaurantInfoLabel.text = randomElement.name
                     restaurantImg.kf.setImage(with: randomElement.imageURL)
                     restaurantDistanceLabel.text = randomElement.distance! + " away"
+                    self.promotionButton.setTitle(self.promotionList.randomElement(), for: .normal)
                     selectedBusiness = randomElement
                 }
             } else{
@@ -116,6 +128,7 @@ class todaysPickViewController: UIViewController, CLLocationManagerDelegate {
                     restaurantInfoLabel.text = randomElement.name
                     restaurantImg.kf.setImage(with: randomElement.imageURL)
                     restaurantDistanceLabel.text = randomElement.distance! + " away"
+                    self.promotionButton.setTitle(self.promotionList.randomElement(), for: .normal)
                     selectedBusiness = randomElement
                 }
                 
@@ -153,4 +166,27 @@ class todaysPickViewController: UIViewController, CLLocationManagerDelegate {
 
     
     
+}
+
+extension CALayer {
+    func applySketchShadow(
+        color: UIColor = .black,
+        alpha: Float = 0.5,
+        x: CGFloat = 0,
+        y: CGFloat = 2,
+        blur: CGFloat = 4,
+        spread: CGFloat = 0)
+    {
+        shadowColor = color.cgColor
+        shadowOpacity = alpha
+        shadowOffset = CGSize(width: x, height: y)
+        shadowRadius = blur / 2.0
+        if spread == 0 {
+            shadowPath = nil
+        } else {
+            let dx = -spread
+            let rect = bounds.insetBy(dx: dx, dy: dx)
+            shadowPath = UIBezierPath(rect: rect).cgPath
+        }
+    }
 }
