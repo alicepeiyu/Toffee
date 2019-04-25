@@ -42,8 +42,13 @@ class todaysPickViewController: UIViewController, CLLocationManagerDelegate {
             typeIcon.image = UIImage(named: "coffeeblack")
             topView.backgroundColor = UIColor(red:1.00, green:0.94, blue:0.41, alpha:1.0)
         }
-        self.pickView.layer.applySketchShadow(color: .black, alpha: 0.5, x: 8, y: 8, blur: 20, spread: -8)
-        
+        self.pickView.layer.applySketchShadow(color: .black, alpha: 0.5, x: 4, y: 4, blur: 20, spread: 0)
+        self.restaurantImg.layer.cornerRadius = 25
+        self.restaurantImg.clipsToBounds = true
+        self.promotionButton.layer.cornerRadius = self.promotionButton.bounds.size.height / 2
+        self.promotionButton.clipsToBounds = true
+
+
         // Create the Activity Indicator
         let activityIndicator = UIActivityIndicatorView(style: .gray)
         
