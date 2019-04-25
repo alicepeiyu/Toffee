@@ -47,8 +47,7 @@ class todaysPickViewController: UIViewController, CLLocationManagerDelegate {
         self.restaurantImg.clipsToBounds = true
         self.promotionButton.layer.cornerRadius = self.promotionButton.bounds.size.height / 2
         self.promotionButton.clipsToBounds = true
-
-
+        
         // Create the Activity Indicator
         let activityIndicator = UIActivityIndicatorView(style: .gray)
         

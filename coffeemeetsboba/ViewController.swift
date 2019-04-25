@@ -19,7 +19,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var isTea: Bool!
     var lat:CLLocationDegrees!
     var long:CLLocationDegrees!
-
+    @IBOutlet weak var coffeeView: UIView!
+    @IBOutlet weak var teaView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -32,7 +34,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
+        let coffeeGesture = UITapGestureRecognizer(target: self, action:  #selector(self.pickCoffee(_:)))
+        self.coffeeView.addGestureRecognizer(coffeeGesture)
+        let teaGesture = UITapGestureRecognizer(target: self, action:  #selector(self.pickTea(_:)))
+        self.teaView.addGestureRecognizer(teaGesture)
         
+        self.coffeeView.layer.applySketchShadow(color: .black, alpha: 0.5, x: 4, y: 4, blur: 20, spread: 0)
+        self.teaView.layer.applySketchShadow(color: .black, alpha: 0.5, x: 4, y: 4, blur: 20, spread: 0)
+
 //        if(locationManager.location?.coordinate.latitude != nil){
 //            Business.searchWithTerm(term: "tea", lat: (locationManager.location?.coordinate.latitude)!, long: (locationManager.location?.coordinate.longitude)!,sort: .distance, categories: ["tea","bubbletea"]) { (businesses, error) in
 //                teaList = businesses
@@ -57,12 +66,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
     }
     
-    @IBAction func pickCoffee(_ sender: Any) {
+    @objc func pickCoffee(_ sender: UITapGestureRecognizer) {
         isTea = false
         performSegue(withIdentifier: "swipeRight", sender: self)
     }
     
-    @IBAction func pickTea(_ sender: Any) {
+    @objc func pickTea(_ sender: UITapGestureRecognizer) {
         isTea = true
         performSegue(withIdentifier: "swipeRight", sender: self)
     }
@@ -105,4 +114,3 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 //
 //    }
 //}
-
