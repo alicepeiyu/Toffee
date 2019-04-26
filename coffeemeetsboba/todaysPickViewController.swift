@@ -64,7 +64,7 @@ class todaysPickViewController: UIViewController, CLLocationManagerDelegate {
         //activityIndicator.removeFromSuperview()
         
         if isTea{
-            Business.searchWithTerm(term: "tea", lat: lat, long: long,sort: .distance, categories: ["tea","bubbletea"]) { (businesses, error) in
+            Business.searchWithTerm(term: "", lat: lat, long: long,sort: .distance, categories: ["tea","bubbletea"]) { (businesses, error) in
                 self.teaList = businesses
                 activityIndicator.removeFromSuperview()
                 if let randomElement = self.teaList.randomElement() {
@@ -78,7 +78,7 @@ class todaysPickViewController: UIViewController, CLLocationManagerDelegate {
                 }
             }
         }else{
-            Business.searchWithTerm(term: "coffee", lat: lat, long: long, sort: .distance, categories: ["coffee","coffeeroasteries","coffeeshops"]) { (businesses, error) in
+            Business.searchWithTerm(term: "", lat: lat, long: long, sort: .distance, categories: ["coffee","coffeeroasteries","coffeeshops","cafes"]) { (businesses, error) in
                 self.coffeeList = businesses
                 activityIndicator.removeFromSuperview()
                 if let randomElement = self.coffeeList.randomElement() {
