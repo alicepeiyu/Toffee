@@ -34,7 +34,7 @@ class todaysPickViewController: UIViewController, CLLocationManagerDelegate {
     
     var lat:CLLocationDegrees!
     var long:CLLocationDegrees!
-    var promotionList = ["20% off first visit!", "Free size upgrade!", "Most users are here!", "10% off everything", "Our user's favorite", "$1 off", "25% off from 1pm-4pm"]
+    var promotionList = ["20% OFF FIRST VISIT!", "FREE SIZE UPGRADE!", "MOST USERS ARE HERE!", "10% OFF EVERYTHING", "USER'S FAVORITE!", "$1 OFF!", "25% OFF 1PM TO 4PM!"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
