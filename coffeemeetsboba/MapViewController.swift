@@ -72,4 +72,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         mapView.addAnnotation(store)
     }
     
+    @IBAction func getDirectionButtonClicked(_ sender: Any) {
+        if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
+            UIApplication.shared.openURL(URL(string:
+                "comgooglemaps://?saddr=&daddr=\(String(describing: selectedBusiness.lat!)),\(String(describing: selectedBusiness.long!))&directionsmode=walking")! as URL)
+            
+        } else {
+            NSLog("Can't use comgooglemaps://");
+        }
+    }
 }

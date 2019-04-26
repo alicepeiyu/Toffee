@@ -100,6 +100,8 @@ class FindPeerViewController: UIViewController, UITableViewDelegate, UITableView
             let acceptAction: UIAlertAction = UIAlertAction(title: "Accept", style: UIAlertAction.Style.default) { (alertAction) -> Void in
                 self.chatService.invitationHandler(true, self.chatService.session)
                 self.selectedPeer = peerID
+                self.alert = UIAlertController(title: "", message: " Connecting with \(self.selectedPeer!.displayName).", preferredStyle: UIAlertController.Style.alert)
+                self.present(self.alert!, animated: true, completion: nil)
             }
             
             let declineAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) { (alertAction) -> Void in
@@ -114,8 +116,10 @@ class FindPeerViewController: UIViewController, UITableViewDelegate, UITableView
     
     func connectedWithPeer(peerID: MCPeerID){
         OperationQueue.main.addOperation { () -> Void in
-            self.alert?.dismiss(animated: true, completion: nil)
-            self.performSegue(withIdentifier: "goToChatView", sender: self)
+            self.alert?.dismiss(animated: true, completion: {
+                NSLog("before goToChatView")
+                self.performSegue(withIdentifier: "goToChatView", sender: self)
+            })
         }
     }
     
