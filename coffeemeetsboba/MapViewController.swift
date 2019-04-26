@@ -30,13 +30,20 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegat
                 cell.infoText.centerVertically()
                 
             case 1:
-                cell.restaurantInfo.text = ""
-                cell.restaurantInfo.isHidden = true
+//                cell.restaurantInfo.text = ""
+//                cell.restaurantInfo.isHidden = true
                 cell.infoIcon.image = UIImage(named: "phone-icon")
-                cell.infoText.dataDetectorTypes = UIDataDetectorTypes.phoneNumber
-                cell.infoText.text = self.selectedBusiness.phone
-                cell.infoText.alignTextVerticallyInContainer()
-                cell.infoText.isEditable = false
+                if self.selectedBusiness.phone != "" {
+                    cell.infoText.dataDetectorTypes = UIDataDetectorTypes.phoneNumber
+                    cell.infoText.text = self.selectedBusiness.phone
+                    cell.infoText.alignTextVerticallyInContainer()
+                    cell.infoText.isEditable = false
+                } else{
+                    cell.restaurantInfo.text = "[ Check back later! ]"
+                    cell.infoText.isEditable = false
+                    cell.infoText.isHidden = true
+                }
+                
             case 2:
                 cell.restaurantInfo.text = self.selectedBusiness.price
                 cell.infoIcon.image = UIImage(named: "price-icon")

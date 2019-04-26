@@ -28,7 +28,7 @@ class Business: NSObject {
         if phoneNum != nil{
             phone = phoneNum
         } else{
-            phone = nil
+            phone = "[ Check back later! ]"
         }
         
         
@@ -36,7 +36,7 @@ class Business: NSObject {
         if range != nil{
             price = range
         }else{
-            price = nil
+            price = "[ Check back later! ]"
         }
         
         let URLString = dictionary["url"] as? String

@@ -184,6 +184,7 @@
                     <navigationItem key="navigationItem" id="7qh-zp-AOa"/>
                     <connections>
                         <outlet property="coffeeView" destination="YcP-6a-vAy" id="ZTj-2A-XQx"/>
+                        <outlet property="logo" destination="2nh-VN-7Ew" id="1JK-im-PaD"/>
                         <outlet property="teaView" destination="yTb-M7-hty" id="tdW-NL-skT"/>
                         <segue destination="Rsf-hq-iqJ" kind="show" identifier="swipeRight" id="xEx-fA-rN9"/>
                     </connections>
@@ -207,7 +208,7 @@
                                         <rect key="frame" x="167.5" y="36.5" width="40" height="60"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have 2 pick(s) left!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGn-44-3SY">
-                                        <rect key="frame" x="122.5" y="106.5" width="130" height="15.5"/>
+                                        <rect key="frame" x="116" y="106.5" width="143.5" height="16"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="13"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -282,7 +283,7 @@
                                 <rect key="frame" x="0.0" y="503.5" width="375" height="163.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pmd-tT-LyN">
-                                        <rect key="frame" x="30" y="-0.5" width="69.5" height="115.5"/>
+                                        <rect key="frame" x="30" y="-1" width="70" height="116.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Pmd-tT-LyN" secondAttribute="height" multiplier="0.6" id="HpI-xy-FdD"/>
                                         </constraints>
@@ -292,7 +293,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BjX-xN-59O">
-                                        <rect key="frame" x="275.5" y="-0.5" width="69.5" height="115.5"/>
+                                        <rect key="frame" x="275.5" y="-1" width="69.5" height="116.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="BjX-xN-59O" secondAttribute="height" multiplier="0.6" id="g1n-Lf-b7d"/>
                                         </constraints>
@@ -302,7 +303,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You’ll have a chance to browse more if nothing you like." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CL1-lG-uSR">
-                                        <rect key="frame" x="109.5" y="44.5" width="156" height="26"/>
+                                        <rect key="frame" x="110" y="37" width="155.5" height="40.5"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="11"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -655,9 +656,7 @@
                                 <rect key="frame" x="0.0" y="315" width="375" height="352"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Bfc-Qr-kge">
-
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="172"/>
-
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="192"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="restaurantInfoViewCell" id="LqH-Zs-Ck8" customClass="restaurantInfoViewCell" customModule="coffeemeetsboba" customModuleProvider="target">
@@ -710,9 +709,7 @@
                                         </prototypes>
                                     </tableView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Qo-Do-Z8d">
-
-                                        <rect key="frame" x="37.5" y="192" width="300" height="50"/>
-
+                                        <rect key="frame" x="37.5" y="212" width="300" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="BS5-n1-FRl"/>
                                         </constraints>
@@ -733,9 +730,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9L8-Nz-9sx">
-
-                                        <rect key="frame" x="37.5" y="262" width="300" height="50"/>
-
+                                        <rect key="frame" x="37.5" y="282" width="300" height="50"/>
                                         <color key="backgroundColor" red="0.4039215686" green="0.85098039219999999" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="S8f-2d-40w"/>
