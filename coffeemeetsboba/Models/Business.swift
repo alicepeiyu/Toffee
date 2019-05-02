@@ -22,8 +22,10 @@ class Business: NSObject {
     let long: Double?
     let lat: Double?
     let phone: String?
+    let redeemed: Bool?
     
     init(dictionary: NSDictionary) {
+        redeemed = false
         let phoneNum = dictionary["phone"] as? String
         if phoneNum != nil{
             phone = phoneNum

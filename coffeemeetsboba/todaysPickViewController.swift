@@ -167,6 +167,20 @@ class todaysPickViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    
+    @IBAction func showPopup(_ sender: Any) {
+        if !self.selectedBusiness!.redeemed! {
+            let popOverVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sbPopupID") as! PopupViewController
+            self.addChild(popOverVc)
+            popOverVc.view.frame = self.view.frame
+            popOverVc.coupon.text = self.promotionButton.titleLabel?.text
+            popOverVc.selectedBusiness = self.selectedBusiness
+            popOverVc.businessName.text = self.selectedBusiness?.name
+            self.view.addSubview(popOverVc.view)
+            popOverVc.didMove(toParent: self)
+        }
+    }
+    
 
     
     
