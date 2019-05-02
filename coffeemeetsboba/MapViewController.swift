@@ -10,8 +10,61 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: UIViewController, MKMapViewDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = restaurantInfoTableView.dequeueReusableCell(withIdentifier: "restaurantInfoViewCell") as? restaurantInfoViewCell{
+            switch indexPath.row {
+            case 0:
+                cell.restaurantInfo.text = ""
+                cell.restaurantInfo.isHidden = true
+                cell.infoIcon.image = UIImage(named: "url-icon")
+                cell.infoText.isEditable = false
+                cell.infoText.dataDetectorTypes = UIDataDetectorTypes.link
+                cell.infoText.text = self.selectedBusiness.url?.absoluteString
+                cell.infoText.textContainer.maximumNumberOfLines = 2
+                cell.infoText.textContainer.lineBreakMode = .byClipping
+                cell.infoText.centerVertically()
+                
+            case 1:
+//                cell.restaurantInfo.text = ""
+//                cell.restaurantInfo.isHidden = true
+                cell.infoIcon.image = UIImage(named: "phone-icon")
+                if self.selectedBusiness.phone != "" {
+                    cell.infoText.dataDetectorTypes = UIDataDetectorTypes.phoneNumber
+                    cell.infoText.text = self.selectedBusiness.phone
+                    cell.infoText.alignTextVerticallyInContainer()
+                    cell.infoText.isEditable = false
+                } else{
+                    cell.restaurantInfo.text = "[ Check back later! ]"
+                    cell.infoText.isEditable = false
+                    cell.infoText.isHidden = true
+                }
+                
+            case 2:
+                cell.restaurantInfo.text = self.selectedBusiness.price
+                cell.infoIcon.image = UIImage(named: "price-icon")
+                cell.infoText.isEditable = false
+                cell.infoText.isHidden = true
+            default:
+                cell.restaurantInfo.text = ""
+            }
+            return cell
+        }
+        return UITableViewCell()
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50.0
+    }
+    
+    
+    
+    @IBOutlet weak var restaurantInfoTableView: UITableView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var typeIcon: UIImageView!
     @IBOutlet weak var businessNameLabel: UILabel!
@@ -35,6 +88,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 //        store.coordinate = coordinate
 //        mapView.setRegion(MKCoordinateRegion(center: coordinate, latitudinalMeters: 1500, longitudinalMeters: 1500), animated: true)
 //        mapView.addAnnotation(store)
+        restaurantInfoTableView.delegate = self
+        restaurantInfoTableView.dataSource = self
         
     }
     
@@ -80,5 +135,29 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         } else {
             NSLog("Can't use comgooglemaps://");
         }
+    }
+}
+
+class  restaurantInfoViewCell : UITableViewCell {
+    @IBOutlet weak var restaurantInfo: UILabel!
+    @IBOutlet weak var infoIcon: UIImageView!
+    @IBOutlet weak var infoText: UITextView!
+}
+
+extension UITextView {
+    
+    func centerVertically() {
+        let fittingSize = CGSize(width: bounds.width, height: CGFloat.greatestFiniteMagnitude)
+        let size = sizeThatFits(fittingSize)
+        let topOffset = (bounds.size.height - size.height * zoomScale) / 2
+        let positiveTopOffset = max(1, topOffset)
+        contentOffset.y = -positiveTopOffset
+    }
+    
+    func alignTextVerticallyInContainer() {
+        var topCorrect = (self.bounds.size.height - self.contentSize.height * self.zoomScale) / 2.0
+        //var topCorrect = (self.bounds.size.height - self.contentSize.height) / 2.0
+        topCorrect = topCorrect < 0.0 ? 0.0 : topCorrect;
+        self.contentInset.top = topCorrect
     }
 }

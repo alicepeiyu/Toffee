@@ -22,13 +22,15 @@ class Business: NSObject {
     let long: Double?
     let lat: Double?
     let phone: String?
+    let redeemed: Bool?
     
     init(dictionary: NSDictionary) {
+        redeemed = false
         let phoneNum = dictionary["phone"] as? String
         if phoneNum != nil{
             phone = phoneNum
         } else{
-            phone = nil
+            phone = "[ Check back later! ]"
         }
         
         
@@ -36,7 +38,7 @@ class Business: NSObject {
         if range != nil{
             price = range
         }else{
-            price = nil
+            price = "[ Check back later! ]"
         }
         
         let URLString = dictionary["url"] as? String

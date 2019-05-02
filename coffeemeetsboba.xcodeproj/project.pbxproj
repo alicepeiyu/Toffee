@@ -24,6 +24,7 @@
 		0BF4A58A226FF1C0003EAAC6 /* BaseMessagesSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF4A589226FF1C0003EAAC6 /* BaseMessagesSelector.swift */; };
 		0BF4A58C226FF352003EAAC6 /* ToffeeChatItemsDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF4A58B226FF352003EAAC6 /* ToffeeChatItemsDecorator.swift */; };
 		0C29E63D989187ED12C87C24 /* Pods_coffeemeetsboba.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AE90F024DFB5DD3D2DA89AB /* Pods_coffeemeetsboba.framework */; };
+		5E3746A2227B88D100D65473 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3746A1227B88D000D65473 /* PopupViewController.swift */; };
 		5E5D023D225FFF7200CBAEDB /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E5D023C225FFF7100CBAEDB /* OverlayView.xib */; };
 		5E5D024122691A1300CBAEDB /* Montserrat in Resources */ = {isa = PBXBuildFile; fileRef = 5E5D024022691A1300CBAEDB /* Montserrat */; };
 		5E5D02452269241400CBAEDB /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E5D02442269241400CBAEDB /* Montserrat-Black.ttf */; };
@@ -82,6 +83,7 @@
 		2AE90F024DFB5DD3D2DA89AB /* Pods_coffeemeetsboba.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_coffeemeetsboba.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32318BE3AB302C3DB9998CA1 /* Pods-coffeemeetsboba.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coffeemeetsboba.debug.xcconfig"; path = "Target Support Files/Pods-coffeemeetsboba/Pods-coffeemeetsboba.debug.xcconfig"; sourceTree = "<group>"; };
 		46DB0A19CCA6F6414ED0527F /* Pods-coffeemeetsbobaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coffeemeetsbobaUITests.debug.xcconfig"; path = "Target Support Files/Pods-coffeemeetsbobaUITests/Pods-coffeemeetsbobaUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		5E3746A1227B88D000D65473 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		5E5D023C225FFF7100CBAEDB /* OverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
 		5E5D024022691A1300CBAEDB /* Montserrat */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Montserrat; sourceTree = "<group>"; };
 		5E5D02442269241400CBAEDB /* Montserrat-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.ttf"; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				5E788C362244A2DF00D0D00A /* Main.storyboard */,
 				0B80659E225B5DF600E41FF6 /* ChatViewController.swift */,
 				5EB5DFD12255756D000ECCD0 /* todaysPickViewController.swift */,
+				5E3746A1227B88D000D65473 /* PopupViewController.swift */,
 				5E788C392244A2E500D0D00A /* Assets.xcassets */,
 				5E788C3B2244A2E500D0D00A /* LaunchScreen.storyboard */,
 				5E788C3E2244A2E500D0D00A /* Info.plist */,
@@ -548,6 +551,7 @@
 				0B5F9394226AE0CB00CF616F /* ChatDataSource.swift in Sources */,
 				0B5F9398226AE99900CF616F /* ChatMessageFactory.swift in Sources */,
 				0B8065992256DDA400E41FF6 /* MapViewController.swift in Sources */,
+				5E3746A2227B88D100D65473 /* PopupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -724,13 +728,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N9NN6749TX;
+				DEVELOPMENT_TEAM = DZ59XKB45V;
 				INFOPLIST_FILE = coffeemeetsboba/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = iosdecal.coffeemeetsboba;
+				PRODUCT_BUNDLE_IDENTIFIER = iosdecal.coffeemeetsboba2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -743,13 +747,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N9NN6749TX;
+				DEVELOPMENT_TEAM = DZ59XKB45V;
 				INFOPLIST_FILE = coffeemeetsboba/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = iosdecal.coffeemeetsboba;
+				PRODUCT_BUNDLE_IDENTIFIER = iosdecal.coffeemeetsboba2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

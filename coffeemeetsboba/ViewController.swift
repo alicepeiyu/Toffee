@@ -22,9 +22,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var coffeeView: UIView!
     @IBOutlet weak var teaView: UIView!
     
+    @IBOutlet weak var logo: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        let hover = CABasicAnimation(keyPath: "position")
+        
+        hover.isAdditive = true
+        hover.fromValue = NSValue(cgPoint: CGPoint.zero)
+        hover.toValue = NSValue(cgPoint: CGPoint(x: 0.0, y: 15.0))
+        hover.autoreverses = true
+        hover.duration = 1
+        hover.repeatCount = Float.infinity
+        
+        self.logo.layer.add(hover, forKey: "myHoverAnimation")
         
         //For use in foreground
         self.locationManager.requestWhenInUseAuthorization()
