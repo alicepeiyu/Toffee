@@ -13,13 +13,17 @@ class PopupViewController: UIViewController {
     
     var selectedBusiness : Business!
     
+    @IBOutlet weak var redeemButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var businessName: UILabel!
     @IBOutlet weak var coupon: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.white.withAlphaComponent(0.8)
+        //self.view.backgroundColor = UIColor.white.withAlphaComponent(0.8)
+        self.redeemButton.layer.cornerRadius = self.redeemButton.bounds.size.height / 2
+        self.redeemButton.clipsToBounds = true
         
         self.showAnimate()
         
