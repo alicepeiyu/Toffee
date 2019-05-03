@@ -13,17 +13,38 @@ class PopupViewController: UIViewController {
     
     var selectedBusiness : Business!
     
-    @IBOutlet weak var redeemButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var businessName: UILabel!
     @IBOutlet weak var coupon: UILabel!
+    @IBOutlet weak var typeIcon: UIImageView!
+    @IBOutlet weak var topView: UIView!
+    var isTea: Bool!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if !isTea{
+            typeIcon.image = UIImage(named: "coffeeblack")
+            topView.backgroundColor = UIColor(red:1.00, green:0.94, blue:0.41, alpha:1.0)
+            self.cancelButton.backgroundColor = UIColor(red:1.00, green:0.94, blue:0.41, alpha:1.0)
+        }else{
+            self.cancelButton.backgroundColor = UIColor(red:0.40, green:0.85, blue:0.60, alpha:1.0)
+        }
+        //self.topView.layer.cornerRadius = min(self.topView.frame.size.width/2, self.topView.frame.size.height/2)
+//        self.topView.layer.cornerRadius = topView.frame.size.height/2
+//        self.topView.clipsToBounds = true
+        
+        self.topView.layer.cornerRadius = min(self.topView.frame.size.height, self.topView.frame.size.width) / 2.0
+        self.topView.clipsToBounds = true
+        
+        
+//        let width:CGFloat = UIScreen.main.bounds.width*0.0533
+//        self.topView.frame = CGRect(0,0,width,width)
+//        self.topView.layer.masksToBounds = true
+//        self.topView.layer.cornerRadius = width/2
         
         //self.view.backgroundColor = UIColor.white.withAlphaComponent(0.8)
-        self.redeemButton.layer.cornerRadius = self.redeemButton.bounds.size.height / 2
-        self.redeemButton.clipsToBounds = true
+        self.cancelButton.layer.cornerRadius = self.cancelButton.bounds.size.height / 2
+        self.cancelButton.clipsToBounds = true
         
         self.showAnimate()
         

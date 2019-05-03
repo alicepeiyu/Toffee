@@ -59,5 +59,9 @@
 	<string>Caveat-Regular.ttf</string>
 	<key>item2</key>
 	<string>Monterrat-Regular.ttf</string>
+	<key>item3</key>
+	<string>Monterrat-Bold.ttf</string>
+	<key>item4</key>
+	<string>Montserrat-SemiBold.ttf</string>
 </dict>
 </plist>
