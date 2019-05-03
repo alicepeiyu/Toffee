@@ -81,15 +81,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegat
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         initView()
-//        let store = MKPointAnnotation()
-//        store.title = "Moffitt Library"
-//        let coordinate = CLLocationCoordinate2D(latitude: 37.872574, longitude: -122.260748)
-//
-//        store.coordinate = coordinate
-//        mapView.setRegion(MKCoordinateRegion(center: coordinate, latitudinalMeters: 1500, longitudinalMeters: 1500), animated: true)
-//        mapView.addAnnotation(store)
         restaurantInfoTableView.delegate = self
         restaurantInfoTableView.dataSource = self
+        restaurantInfoTableView.tableFooterView = UIView(frame: .zero)
         
     }
     

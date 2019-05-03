@@ -26,6 +26,14 @@ class FindPeerViewController: UIViewController, UITableViewDelegate, UITableView
         // Do any additional setup after loading the view.
         peerTable.delegate = self
         peerTable.dataSource = self
+
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        imageView.contentMode = .scaleAspectFit
+        let image = UIImage(named: "LOGO_round")
+        imageView.image = image
+        navigationItem.titleView = imageView
+        peerTable.tableFooterView = UIView(frame: .zero)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
