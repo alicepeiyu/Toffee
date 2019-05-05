@@ -27,7 +27,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Hello</string>
+	<string>Allow Toffee to use your location so that we can find places near you. </string>
 	<key>UIAppFonts</key>
 	<array>
 		<string></string>
