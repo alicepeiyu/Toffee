@@ -25,6 +25,8 @@
 		0BF4A58C226FF352003EAAC6 /* ToffeeChatItemsDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF4A58B226FF352003EAAC6 /* ToffeeChatItemsDecorator.swift */; };
 		0C29E63D989187ED12C87C24 /* Pods_coffeemeetsboba.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AE90F024DFB5DD3D2DA89AB /* Pods_coffeemeetsboba.framework */; };
 		5E3746A2227B88D100D65473 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3746A1227B88D000D65473 /* PopupViewController.swift */; };
+		5E3746A5227BE94200D65473 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E3746A4227BE94200D65473 /* Montserrat-SemiBold.ttf */; };
+		5E3746A6227BE94800D65473 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E3746A3227BE88700D65473 /* Montserrat-Bold.ttf */; };
 		5E5D023D225FFF7200CBAEDB /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E5D023C225FFF7100CBAEDB /* OverlayView.xib */; };
 		5E5D024122691A1300CBAEDB /* Montserrat in Resources */ = {isa = PBXBuildFile; fileRef = 5E5D024022691A1300CBAEDB /* Montserrat */; };
 		5E5D02452269241400CBAEDB /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E5D02442269241400CBAEDB /* Montserrat-Black.ttf */; };
@@ -84,6 +86,8 @@
 		32318BE3AB302C3DB9998CA1 /* Pods-coffeemeetsboba.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coffeemeetsboba.debug.xcconfig"; path = "Target Support Files/Pods-coffeemeetsboba/Pods-coffeemeetsboba.debug.xcconfig"; sourceTree = "<group>"; };
 		46DB0A19CCA6F6414ED0527F /* Pods-coffeemeetsbobaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coffeemeetsbobaUITests.debug.xcconfig"; path = "Target Support Files/Pods-coffeemeetsbobaUITests/Pods-coffeemeetsbobaUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5E3746A1227B88D000D65473 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
+		5E3746A3227BE88700D65473 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		5E3746A4227BE94200D65473 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		5E5D023C225FFF7100CBAEDB /* OverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
 		5E5D024022691A1300CBAEDB /* Montserrat */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Montserrat; sourceTree = "<group>"; };
 		5E5D02442269241400CBAEDB /* Montserrat-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.ttf"; sourceTree = "<group>"; };
@@ -149,7 +153,9 @@
 				5E5D024A22693E9C00CBAEDB /* Caveat */,
 				5E5D024022691A1300CBAEDB /* Montserrat */,
 				5E5D02462269241D00CBAEDB /* Caveat-Regular.ttf */,
+				5E3746A3227BE88700D65473 /* Montserrat-Bold.ttf */,
 				5E5D0248226924A200CBAEDB /* Montserrat-Regular.ttf */,
+				5E3746A4227BE94200D65473 /* Montserrat-SemiBold.ttf */,
 				5E5D02442269241400CBAEDB /* Montserrat-Black.ttf */,
 			);
 			path = Fonts;
@@ -387,12 +393,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E3746A6227BE94800D65473 /* Montserrat-Bold.ttf in Resources */,
 				5E788C3D2244A2E500D0D00A /* LaunchScreen.storyboard in Resources */,
 				5E5D0249226924A600CBAEDB /* Montserrat-Regular.ttf in Resources */,
 				5E5D024122691A1300CBAEDB /* Montserrat in Resources */,
 				5E5D023D225FFF7200CBAEDB /* OverlayView.xib in Resources */,
 				5E788C3A2244A2E500D0D00A /* Assets.xcassets in Resources */,
 				5E5D02472269242100CBAEDB /* Caveat-Regular.ttf in Resources */,
+				5E3746A5227BE94200D65473 /* Montserrat-SemiBold.ttf in Resources */,
 				5E788C382244A2DF00D0D00A /* Main.storyboard in Resources */,
 				5E5D02452269241400CBAEDB /* Montserrat-Black.ttf in Resources */,
 			);

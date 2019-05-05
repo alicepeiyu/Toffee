@@ -34,7 +34,7 @@ class todaysPickViewController: UIViewController, CLLocationManagerDelegate {
     
     var lat:CLLocationDegrees!
     var long:CLLocationDegrees!
-    var promotionList = ["20% OFF FIRST VISIT!", "FREE SIZE UPGRADE!", "MOST USERS ARE HERE!", "10% OFF EVERYTHING", "USER'S FAVORITE!", "$1 OFF!", "25% OFF 1PM TO 4PM!"]
+    var promotionList = ["20% OFF FIRST VISIT", "FREE SIZE UPGRADE", "25% OFF STUDENT DISCOUNT", "10% OFF EVERYTHING", "BUY ONE GET ONE FREE", "$1 OFF", "15% OFF 1PM TO 4PM"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -172,10 +172,12 @@ class todaysPickViewController: UIViewController, CLLocationManagerDelegate {
         if !self.selectedBusiness!.redeemed! {
             let popOverVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sbPopupID") as! PopupViewController
             self.addChild(popOverVc)
+            popOverVc.isTea = self.isTea
             popOverVc.view.frame = self.view.frame
             popOverVc.coupon.text = self.promotionButton.titleLabel?.text
             popOverVc.selectedBusiness = self.selectedBusiness
             popOverVc.businessName.text = self.selectedBusiness?.name
+            //popOverVc.isTea = self.isTea
             self.view.addSubview(popOverVc.view)
             popOverVc.didMove(toParent: self)
         }
