@@ -23,6 +23,8 @@ class Business: NSObject {
     let lat: Double?
     let phone: String?
     let redeemed: Bool?
+    let coupon: String?
+    let date: String?
     
     init(dictionary: NSDictionary) {
         redeemed = false
@@ -49,6 +51,14 @@ class Business: NSObject {
         }
         
         name = dictionary["name"] as? String
+        
+        if name == "1951 Coffee Shop"{
+            coupon = "10% OFF EVERYTHING"
+            date = "valid now until 2019/05/16"
+        }else{
+            coupon = nil
+            date = nil
+        }
         
         let coordinates = dictionary["coordinates"] as? NSDictionary
         if coordinates != nil{

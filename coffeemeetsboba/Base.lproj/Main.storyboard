@@ -406,17 +406,30 @@
                                 <rect key="frame" x="0.0" y="353.5" width="375" height="67"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10% off" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WVM-QZ-LO8">
-                                        <rect key="frame" x="0.0" y="24" width="375" height="18.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="33.5"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                         <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iur-OW-mqE">
+                                        <rect key="frame" x="0.0" y="33.5" width="375" height="33.5"/>
+                                        <string key="text">Valid now until 2019/05/16 
+At all locations</string>
+                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="iur-OW-mqE" firstAttribute="height" secondItem="vGW-hZ-ApG" secondAttribute="height" multiplier="0.5" id="A4v-VT-Bh9"/>
                                     <constraint firstItem="WVM-QZ-LO8" firstAttribute="width" secondItem="vGW-hZ-ApG" secondAttribute="width" id="HOu-X3-OLP"/>
-                                    <constraint firstItem="WVM-QZ-LO8" firstAttribute="centerY" secondItem="vGW-hZ-ApG" secondAttribute="centerY" id="Lvz-U9-jzM"/>
+                                    <constraint firstItem="WVM-QZ-LO8" firstAttribute="top" secondItem="vGW-hZ-ApG" secondAttribute="top" id="OXF-i3-Itu"/>
+                                    <constraint firstItem="iur-OW-mqE" firstAttribute="centerX" secondItem="vGW-hZ-ApG" secondAttribute="centerX" id="P8L-WZ-djn"/>
+                                    <constraint firstItem="iur-OW-mqE" firstAttribute="width" secondItem="vGW-hZ-ApG" secondAttribute="width" id="Sxh-gk-MhE"/>
+                                    <constraint firstItem="WVM-QZ-LO8" firstAttribute="height" secondItem="vGW-hZ-ApG" secondAttribute="height" multiplier="0.5" id="UxP-WD-I8c"/>
                                     <constraint firstItem="WVM-QZ-LO8" firstAttribute="centerX" secondItem="vGW-hZ-ApG" secondAttribute="centerX" id="VCd-Sf-1BY"/>
+                                    <constraint firstItem="iur-OW-mqE" firstAttribute="top" secondItem="WVM-QZ-LO8" secondAttribute="bottom" id="hnc-M1-LYP"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F4e-yG-ejE">
@@ -472,6 +485,7 @@
                         <outlet property="businessName" destination="d6p-b0-cYS" id="BBm-5d-PAT"/>
                         <outlet property="cancelButton" destination="1Eo-cE-8Lt" id="dog-Uv-orO"/>
                         <outlet property="coupon" destination="WVM-QZ-LO8" id="To1-rC-3fl"/>
+                        <outlet property="date" destination="iur-OW-mqE" id="Ja3-cF-2D6"/>
                         <outlet property="topView" destination="oCY-H6-5cS" id="9WN-Tu-idS"/>
                         <outlet property="typeIcon" destination="IvO-tP-UV8" id="XW7-63-YpE"/>
                     </connections>

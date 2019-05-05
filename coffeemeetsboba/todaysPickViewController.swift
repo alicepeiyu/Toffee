@@ -36,6 +36,8 @@ class todaysPickViewController: UIViewController, CLLocationManagerDelegate {
     var long:CLLocationDegrees!
     var promotionList = ["20% OFF FIRST VISIT", "FREE SIZE UPGRADE", "25% OFF STUDENT DISCOUNT", "10% OFF EVERYTHING", "BUY ONE GET ONE FREE", "$1 OFF", "15% OFF 1PM TO 4PM"]
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if !isTea{
@@ -63,12 +65,13 @@ class todaysPickViewController: UIViewController, CLLocationManagerDelegate {
         // To remove it, just call removeFromSuperview()
         //activityIndicator.removeFromSuperview()
         
+        
+        
         if isTea{
             Business.searchWithTerm(term: "", lat: lat, long: long,sort: .distance, categories: ["tea","bubbletea"]) { (businesses, error) in
                 self.teaList = businesses
                 activityIndicator.removeFromSuperview()
                 if let randomElement = self.teaList.randomElement() {
-                    print(randomElement.phone)
                     self.restaurantInfoLabel.text = randomElement.name
                     self.restaurantImg.kf.setImage(with: randomElement.imageURL)
                     self.restaurantDistanceLabel.text = randomElement.distance! + " away"
