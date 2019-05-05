@@ -50,7 +50,7 @@
                                 <rect key="frame" x="0.0" y="120" width="375" height="133.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's on your mind today?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ege-Ak-dEP">
-                                        <rect key="frame" x="0.0" y="44.5" width="375" height="44.5"/>
+                                        <rect key="frame" x="0.0" y="26" width="375" height="82"/>
                                         <fontDescription key="fontDescription" name="Caveat-Regular" family="Caveat" pointSize="35"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -146,7 +146,7 @@
                                 <rect key="frame" x="0.0" y="487" width="375" height="180"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select one to get your suggested pick of the day" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Foz-M8-eFT">
-                                        <rect key="frame" x="94" y="72.5" width="187.5" height="34.5"/>
+                                        <rect key="frame" x="94" y="73.5" width="187.5" height="33"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -503,13 +503,13 @@ At all locations</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="plp-EO-eUb">
-                                <rect key="frame" x="0.0" y="20" width="375" height="133.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="167"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="teablack" translatesAutoresizingMaskIntoConstraints="NO" id="Nyd-vE-tHG">
-                                        <rect key="frame" x="167.5" y="36.5" width="40" height="60"/>
+                                        <rect key="frame" x="167.5" y="53.5" width="40" height="60"/>
                                     </imageView>
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="jDG-XW-zCf">
-                                        <rect key="frame" x="20" y="106.5" width="335" height="17"/>
+                                        <rect key="frame" x="20" y="123.5" width="335" height="33.5"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
                                 </subviews>
@@ -524,7 +524,7 @@ At all locations</string>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zMJ-3p-sko">
-                                <rect key="frame" x="0.0" y="153.5" width="375" height="500"/>
+                                <rect key="frame" x="0.0" y="167" width="375" height="500"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="restaurantTableViewCell" id="Cea-0J-Now" customClass="restaurantTableViewCell" customModule="coffeemeetsboba" customModuleProvider="target">
@@ -631,9 +631,9 @@ At all locations</string>
                             <constraint firstItem="zMJ-3p-sko" firstAttribute="centerX" secondItem="5HY-rp-joX" secondAttribute="centerX" id="3vU-bu-sJX"/>
                             <constraint firstItem="zMJ-3p-sko" firstAttribute="top" secondItem="plp-EO-eUb" secondAttribute="bottom" id="FUV-Qg-EK0"/>
                             <constraint firstItem="plp-EO-eUb" firstAttribute="width" secondItem="7Bi-E7-DVE" secondAttribute="width" id="L12-az-Vge"/>
-                            <constraint firstItem="plp-EO-eUb" firstAttribute="top" secondItem="5HY-rp-joX" secondAttribute="top" id="cWr-RC-Nca"/>
+                            <constraint firstItem="plp-EO-eUb" firstAttribute="top" secondItem="7Bi-E7-DVE" secondAttribute="top" id="PrN-ak-WUB"/>
                             <constraint firstItem="zMJ-3p-sko" firstAttribute="width" secondItem="7Bi-E7-DVE" secondAttribute="width" id="dlw-dU-baK"/>
-                            <constraint firstItem="plp-EO-eUb" firstAttribute="height" secondItem="7Bi-E7-DVE" secondAttribute="height" multiplier="0.2" id="guO-Wv-DVT"/>
+                            <constraint firstItem="plp-EO-eUb" firstAttribute="height" secondItem="7Bi-E7-DVE" secondAttribute="height" multiplier="0.25" id="guO-Wv-DVT"/>
                             <constraint firstItem="plp-EO-eUb" firstAttribute="centerX" secondItem="5HY-rp-joX" secondAttribute="centerX" id="rDg-X8-Aqq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5HY-rp-joX"/>
@@ -770,9 +770,8 @@ At all locations</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DNK-Zn-iZI">
                                 <rect key="frame" x="0.0" y="250.5" width="375" height="64.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uQQ-2w-Sf1">
-                                        <rect key="frame" x="8" y="8" width="247" height="22"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uQQ-2w-Sf1">
+                                        <rect key="frame" x="8" y="8" width="317" height="48.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -786,14 +785,18 @@ At all locations</string>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.74772581335616439" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="uQQ-2w-Sf1" secondAttribute="trailing" constant="50" id="UaS-HP-qgw"/>
                                     <constraint firstAttribute="bottom" secondItem="LCK-1e-h8I" secondAttribute="bottom" constant="5" id="aFI-Sv-ajl"/>
                                     <constraint firstAttribute="trailing" secondItem="LCK-1e-h8I" secondAttribute="trailing" constant="20" id="edd-9j-Dto"/>
+                                    <constraint firstItem="uQQ-2w-Sf1" firstAttribute="top" secondItem="DNK-Zn-iZI" secondAttribute="top" constant="8" id="jwI-o1-Vh9"/>
+                                    <constraint firstAttribute="bottom" secondItem="uQQ-2w-Sf1" secondAttribute="bottom" constant="8" id="sQZ-Zw-2OX"/>
+                                    <constraint firstItem="uQQ-2w-Sf1" firstAttribute="leading" secondItem="DNK-Zn-iZI" secondAttribute="leading" constant="8" id="sqp-qV-KKx"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m1s-ZE-63e">
                                 <rect key="frame" x="0.0" y="315" width="375" height="352"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Bfc-Qr-kge">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Bfc-Qr-kge">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="192"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
