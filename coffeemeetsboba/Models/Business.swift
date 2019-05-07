@@ -25,6 +25,7 @@ class Business: NSObject {
     let redeemed: Bool?
     let coupon: String?
     let date: String?
+    let couponValue: String?
     
     init(dictionary: NSDictionary) {
         redeemed = false
@@ -53,11 +54,13 @@ class Business: NSObject {
         name = dictionary["name"] as? String
         
         if name == "1951 Coffee Shop"{
-            coupon = "10% OFF EVERYTHING"
+            coupon = "UNLOCK SPECIAL OFFER!"
             date = "valid now until 2019/05/16"
+            couponValue = "CONGRATS! YOU GOT: \n \n 10% OFF EVERYTHING!"
         }else{
             coupon = nil
             date = nil
+            couponValue = nil
         }
         
         let coordinates = dictionary["coordinates"] as? NSDictionary
@@ -157,7 +160,7 @@ class Business: NSObject {
         var businesses = [Business]()
         for dictionary in array {
             let business = Business(dictionary: dictionary)
-            if (business.name != "Starbucks" && business.name != "7-Eleven" && business.name != "McDonald\'s") {
+            if (business.name != "Starbucks" && business.name != "7-Eleven" && business.name != "McDonald\'s" && !business.address!.contains("2495 Bancroft Way")) {
                businesses.append(business)
             }
         }

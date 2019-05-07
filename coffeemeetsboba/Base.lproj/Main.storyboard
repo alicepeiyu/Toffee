@@ -19,6 +19,9 @@
         <array key="Montserrat-Regular.ttf">
             <string>Montserrat-Regular</string>
         </array>
+        <array key="SFUIText.ttf">
+            <string>.SFUIText</string>
+        </array>
     </customFonts>
     <scenes>
         <!--ViewContoller-->
@@ -50,7 +53,7 @@
                                 <rect key="frame" x="0.0" y="120" width="375" height="133.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's on your mind today?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ege-Ak-dEP">
-                                        <rect key="frame" x="0.0" y="26" width="375" height="82"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="44.5"/>
                                         <fontDescription key="fontDescription" name="Caveat-Regular" family="Caveat" pointSize="35"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -146,7 +149,7 @@
                                 <rect key="frame" x="0.0" y="487" width="375" height="180"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select one to get your suggested pick of the day" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Foz-M8-eFT">
-                                        <rect key="frame" x="94" y="73.5" width="187.5" height="33"/>
+                                        <rect key="frame" x="94" y="72.5" width="187.5" height="34.5"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -403,20 +406,19 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vGW-hZ-ApG">
-                                <rect key="frame" x="0.0" y="353.5" width="375" height="67"/>
+                                <rect key="frame" x="0.0" y="353.5" width="375" height="200"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10% off" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WVM-QZ-LO8">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="33.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10% off" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WVM-QZ-LO8">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iur-OW-mqE">
-                                        <rect key="frame" x="0.0" y="33.5" width="375" height="33.5"/>
-                                        <string key="text">Valid now until 2019/05/16 
-At all locations</string>
-                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iur-OW-mqE">
+                                        <rect key="frame" x="37.5" y="60" width="300" height="100"/>
+                                        <string key="text">Offer valid 5/9/2019 – 5/16/2019. Offer valid for one–time use. At 2410 Channing Way Berkeley, California 94704 location only. This  offer cannot be combined with other offers, promotions or discounts, including stamps card. </string>
+                                        <fontDescription key="fontDescription" name=".SFUIText" family=".SF UI Text" pointSize="11"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -426,17 +428,17 @@ At all locations</string>
                                     <constraint firstItem="WVM-QZ-LO8" firstAttribute="width" secondItem="vGW-hZ-ApG" secondAttribute="width" id="HOu-X3-OLP"/>
                                     <constraint firstItem="WVM-QZ-LO8" firstAttribute="top" secondItem="vGW-hZ-ApG" secondAttribute="top" id="OXF-i3-Itu"/>
                                     <constraint firstItem="iur-OW-mqE" firstAttribute="centerX" secondItem="vGW-hZ-ApG" secondAttribute="centerX" id="P8L-WZ-djn"/>
-                                    <constraint firstItem="iur-OW-mqE" firstAttribute="width" secondItem="vGW-hZ-ApG" secondAttribute="width" id="Sxh-gk-MhE"/>
-                                    <constraint firstItem="WVM-QZ-LO8" firstAttribute="height" secondItem="vGW-hZ-ApG" secondAttribute="height" multiplier="0.5" id="UxP-WD-I8c"/>
+                                    <constraint firstItem="iur-OW-mqE" firstAttribute="width" secondItem="vGW-hZ-ApG" secondAttribute="width" multiplier="0.8" id="Sxh-gk-MhE"/>
+                                    <constraint firstItem="WVM-QZ-LO8" firstAttribute="height" secondItem="vGW-hZ-ApG" secondAttribute="height" multiplier="0.3" id="UxP-WD-I8c"/>
                                     <constraint firstItem="WVM-QZ-LO8" firstAttribute="centerX" secondItem="vGW-hZ-ApG" secondAttribute="centerX" id="VCd-Sf-1BY"/>
                                     <constraint firstItem="iur-OW-mqE" firstAttribute="top" secondItem="WVM-QZ-LO8" secondAttribute="bottom" id="hnc-M1-LYP"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F4e-yG-ejE">
-                                <rect key="frame" x="0.0" y="420.5" width="375" height="66.5"/>
+                                <rect key="frame" x="0.0" y="553.5" width="375" height="67"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Eo-cE-8Lt">
-                                        <rect key="frame" x="37.5" y="8" width="300" height="50"/>
+                                        <rect key="frame" x="37.5" y="8.5" width="300" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="77l-Ac-bVD"/>
                                         </constraints>
@@ -477,7 +479,7 @@ At all locations</string>
                             <constraint firstItem="oCY-H6-5cS" firstAttribute="centerX" secondItem="pp0-xW-MUE" secondAttribute="centerX" id="fy9-hL-Bdy"/>
                             <constraint firstItem="U5g-75-R3H" firstAttribute="height" secondItem="AzT-Ck-7aX" secondAttribute="height" multiplier="0.2" constant="0.20000000000000001" id="hUj-xV-Mfp"/>
                             <constraint firstItem="F4e-yG-ejE" firstAttribute="centerX" secondItem="pp0-xW-MUE" secondAttribute="centerX" id="qsH-Tr-W4A"/>
-                            <constraint firstItem="vGW-hZ-ApG" firstAttribute="height" secondItem="AzT-Ck-7aX" secondAttribute="height" multiplier="0.1" id="zr9-SO-dDp"/>
+                            <constraint firstItem="vGW-hZ-ApG" firstAttribute="height" secondItem="AzT-Ck-7aX" secondAttribute="height" multiplier="0.3" id="zr9-SO-dDp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pp0-xW-MUE"/>
                     </view>
@@ -750,7 +752,7 @@ At all locations</string>
                                         <rect key="frame" x="167.5" y="36.5" width="40" height="60"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have 2 Pick Left!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zpe-TU-s3g">
-                                        <rect key="frame" x="121.5" y="106.5" width="132.5" height="16"/>
+                                        <rect key="frame" x="126.5" y="106.5" width="122" height="16"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="13"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -970,7 +972,7 @@ At all locations</string>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cbv-h7-LKc">
-                                                    <rect key="frame" x="70" y="12" width="235" height="20"/>
+                                                    <rect key="frame" x="70" y="11.5" width="235" height="21"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

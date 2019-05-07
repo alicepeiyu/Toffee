@@ -34,7 +34,7 @@ class todaysPickViewController: UIViewController, CLLocationManagerDelegate {
     
     var lat:CLLocationDegrees!
     var long:CLLocationDegrees!
-    var promotionList = ["20% OFF FIRST VISIT", "FREE SIZE UPGRADE", "25% OFF STUDENT DISCOUNT", "10% OFF EVERYTHING", "BUY ONE GET ONE FREE", "$1 OFF", "15% OFF 1PM TO 4PM"]
+    var promotionList = ["OUR FAVORITE!", "TOP PICK!", "NOW OPEN!", "ENJOY A DRINK!","TAKE A BREAK!"]
     
 
     
@@ -70,28 +70,57 @@ class todaysPickViewController: UIViewController, CLLocationManagerDelegate {
         if isTea{
             Business.searchWithTerm(term: "", lat: lat, long: long,sort: .distance, categories: ["tea","bubbletea"]) { (businesses, error) in
                 self.teaList = businesses
-                activityIndicator.removeFromSuperview()
-                if let randomElement = self.teaList.randomElement() {
-                    self.restaurantInfoLabel.text = randomElement.name
-                    self.restaurantImg.kf.setImage(with: randomElement.imageURL)
-                    self.restaurantDistanceLabel.text = randomElement.distance! + " away"
-                    self.promotionButton.setTitle(self.promotionList.randomElement(), for: .normal)
-                    self.promotionButton.backgroundColor = UIColor(red:0.40, green:0.85, blue:0.60, alpha:1.0)
-                    self.selectedBusiness = randomElement
+                //activityIndicator.removeFromSuperview()
+//                if let randomElement = self.teaList.randomElement() {
+//                    self.restaurantInfoLabel.text = randomElement.name
+//                    self.restaurantImg.kf.setImage(with: randomElement.imageURL)
+//                    self.restaurantDistanceLabel.text = randomElement.distance! + " away"
+//                    self.promotionButton.setTitle(self.promotionList.randomElement(), for: .normal)
+//                    self.promotionButton.backgroundColor = UIColor(red:0.40, green:0.85, blue:0.60, alpha:1.0)
+//                    self.selectedBusiness = randomElement
                 }
+            Business.searchWithTerm(term: "", lat: lat, long: long, sort: .distance, categories: ["coffee","coffeeroasteries","coffeeshops","cafes"]) { (businesses, error) in
+                self.coffeeList = businesses
+                activityIndicator.removeFromSuperview()
+                for business in self.coffeeList {
+                    if business.name == "1951 Coffee Shop"{
+                        self.restaurantInfoLabel.text = business.name
+                        self.restaurantImg.kf.setImage(with: business.imageURL)
+                        self.restaurantDistanceLabel.text = business.distance! + " away"
+                        //           self.promotionButton.setTitle(self.promotionList.randomElement(), for: .normal)
+                        self.promotionButton.setTitle(business.coupon, for: .normal)
+//                        self.promotionButton.backgroundColor = UIColor(red:1.00, green:0.94, blue:0.41, alpha:1.0)
+                        self.promotionButton.backgroundColor = UIColor(red:0.40, green:0.85, blue:0.60, alpha:1.0)
+                        self.selectedBusiness = business
+                    }
+                }
+                
             }
         }else{
             Business.searchWithTerm(term: "", lat: lat, long: long, sort: .distance, categories: ["coffee","coffeeroasteries","coffeeshops","cafes"]) { (businesses, error) in
                 self.coffeeList = businesses
                 activityIndicator.removeFromSuperview()
-                if let randomElement = self.coffeeList.randomElement() {
-                    self.restaurantInfoLabel.text = randomElement.name
-                    self.restaurantImg.kf.setImage(with: randomElement.imageURL)
-                    self.restaurantDistanceLabel.text = randomElement.distance! + " away"
-                    self.promotionButton.setTitle(self.promotionList.randomElement(), for: .normal)
-                    self.promotionButton.backgroundColor = UIColor(red:1.00, green:0.94, blue:0.41, alpha:1.0)
-                    self.selectedBusiness = randomElement
+                for business in self.coffeeList {
+                    if business.name == "1951 Coffee Shop"{
+                        self.restaurantInfoLabel.text = business.name
+                        self.restaurantImg.kf.setImage(with: business.imageURL)
+                        self.restaurantDistanceLabel.text = business.distance! + " away"
+//           self.promotionButton.setTitle(self.promotionList.randomElement(), for: .normal)
+                        self.promotionButton.setTitle(business.coupon, for: .normal)
+                        self.promotionButton.backgroundColor = UIColor(red:1.00, green:0.94, blue:0.41, alpha:1.0)
+                        self.selectedBusiness = business
+                    }
                 }
+                
+                
+//                if let randomElement = self.coffeeList.randomElement() {
+//                    self.restaurantInfoLabel.text = randomElement.name
+//                    self.restaurantImg.kf.setImage(with: randomElement.imageURL)
+//                    self.restaurantDistanceLabel.text = randomElement.distance! + " away"
+//                    self.promotionButton.setTitle(self.promotionList.randomElement(), for: .normal)
+//                    self.promotionButton.backgroundColor = UIColor(red:1.00, green:0.94, blue:0.41, alpha:1.0)
+//                    self.selectedBusiness = randomElement
+//                }
             }
         }
 
@@ -172,12 +201,12 @@ class todaysPickViewController: UIViewController, CLLocationManagerDelegate {
     
     
     @IBAction func showPopup(_ sender: Any) {
-        if !self.selectedBusiness!.redeemed! {
+        if self.selectedBusiness?.name == "1951 Coffee Shop" {
             let popOverVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sbPopupID") as! PopupViewController
             self.addChild(popOverVc)
             popOverVc.isTea = self.isTea
             popOverVc.view.frame = self.view.frame
-            popOverVc.coupon.text = self.promotionButton.titleLabel?.text
+            popOverVc.coupon.text = self.selectedBusiness?.couponValue
             popOverVc.selectedBusiness = self.selectedBusiness
             popOverVc.businessName.text = self.selectedBusiness?.name
             //popOverVc.isTea = self.isTea
