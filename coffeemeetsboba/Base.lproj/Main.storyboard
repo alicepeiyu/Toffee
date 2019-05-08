@@ -487,7 +487,7 @@
                         <outlet property="businessName" destination="d6p-b0-cYS" id="BBm-5d-PAT"/>
                         <outlet property="cancelButton" destination="1Eo-cE-8Lt" id="dog-Uv-orO"/>
                         <outlet property="coupon" destination="WVM-QZ-LO8" id="To1-rC-3fl"/>
-                        <outlet property="date" destination="iur-OW-mqE" id="Ja3-cF-2D6"/>
+                        <outlet property="terms" destination="iur-OW-mqE" id="TfR-nl-2Lk"/>
                         <outlet property="topView" destination="oCY-H6-5cS" id="9WN-Tu-idS"/>
                         <outlet property="typeIcon" destination="IvO-tP-UV8" id="XW7-63-YpE"/>
                     </connections>

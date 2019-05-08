@@ -63,7 +63,7 @@ class YelpClient: AFHTTPRequestOperationManager {
 //        }
         
         // Default the location to Berkeley
-        // "37.785771,-122.406165"
+        // "37.785771,-122.406165" (SF)
         
         print(lat)
         print(long)

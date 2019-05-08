@@ -24,7 +24,7 @@ class Business: NSObject {
     let phone: String?
     let redeemed: Bool?
     let coupon: String?
-    let date: String?
+    let terms: String?
     let couponValue: String?
     
     init(dictionary: NSDictionary) {
@@ -52,14 +52,17 @@ class Business: NSObject {
         }
         
         name = dictionary["name"] as? String
-        
-        if name == "1951 Coffee Shop"{
+        if name == "1951 Coffee Shop" {
             coupon = "UNLOCK SPECIAL OFFER!"
-            date = "valid now until 2019/05/16"
+            terms = "Offer valid 5/9/2019 – 5/16/2019. Offer valid for one–time use. At 2410 Channing Way Berkeley, California 94704 location only. This offer cannot be combined with other offers, promotions or discounts, including stamps card."
             couponValue = "CONGRATS! YOU GOT: \n \n 10% OFF EVERYTHING!"
-        }else{
+        }else if name == "Babette"{
+            coupon = "UNLOCK SPECIAL OFFER!"
+            terms = "Offer valid 5/9/2019 – 5/16/2019. At 2120 Oxford St Berkeley, CA 94720 location only. This offer cannot be combined with other offers, promotions or discounts."
+            couponValue = "CONGRATS! YOU GOT: \n \n 10% OFF EVERYTHING!"
+        } else {
             coupon = nil
-            date = nil
+            terms = nil
             couponValue = nil
         }
         

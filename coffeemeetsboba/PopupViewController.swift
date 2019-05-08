@@ -19,7 +19,7 @@ class PopupViewController: UIViewController {
     @IBOutlet weak var typeIcon: UIImageView!
     @IBOutlet weak var topView: UIView!
     var isTea: Bool!
-    @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var terms: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -35,6 +35,8 @@ class todaysPickViewController: UIViewController, CLLocationManagerDelegate {
     var lat:CLLocationDegrees!
     var long:CLLocationDegrees!
     var promotionList = ["OUR FAVORITE!", "TOP PICK!", "NOW OPEN!", "ENJOY A DRINK!","TAKE A BREAK!"]
+    var found1951 = false
+    var foundBabette = false
     
 
     
@@ -92,7 +94,18 @@ class todaysPickViewController: UIViewController, CLLocationManagerDelegate {
 //                        self.promotionButton.backgroundColor = UIColor(red:1.00, green:0.94, blue:0.41, alpha:1.0)
                         self.promotionButton.backgroundColor = UIColor(red:0.40, green:0.85, blue:0.60, alpha:1.0)
                         self.selectedBusiness = business
+                        self.found1951 = true
                     }
+                }
+                if !self.found1951 {
+                                    if let randomElement = self.teaList.randomElement() {
+                                        self.restaurantInfoLabel.text = randomElement.name
+                                        self.restaurantImg.kf.setImage(with: randomElement.imageURL)
+                                        self.restaurantDistanceLabel.text = randomElement.distance! + " away"
+                                        self.promotionButton.setTitle(self.promotionList.randomElement(), for: .normal)
+                                        self.promotionButton.backgroundColor = UIColor(red:0.40, green:0.85, blue:0.60, alpha:1.0)
+                                        self.selectedBusiness = randomElement
+                                    }
                 }
                 
             }
@@ -109,6 +122,17 @@ class todaysPickViewController: UIViewController, CLLocationManagerDelegate {
                         self.promotionButton.setTitle(business.coupon, for: .normal)
                         self.promotionButton.backgroundColor = UIColor(red:1.00, green:0.94, blue:0.41, alpha:1.0)
                         self.selectedBusiness = business
+                        self.found1951 = true
+                    }
+                }
+                if !self.found1951 {
+                    if let randomElement = self.coffeeList.randomElement() {
+                        self.restaurantInfoLabel.text = randomElement.name
+                        self.restaurantImg.kf.setImage(with: randomElement.imageURL)
+                        self.restaurantDistanceLabel.text = randomElement.distance! + " away"
+                        self.promotionButton.setTitle(self.promotionList.randomElement(), for: .normal)
+                        self.promotionButton.backgroundColor = UIColor(red:1.00, green:0.94, blue:0.41, alpha:1.0)
+                        self.selectedBusiness = randomElement
                     }
                 }
                 
@@ -150,7 +174,47 @@ class todaysPickViewController: UIViewController, CLLocationManagerDelegate {
     
     
     @IBAction func skip(_ sender: Any) {
-        if numOfPick >= 0{
+        if numOfPick == 1{
+            for business in self.coffeeList {
+                if business.name == "Babette"{
+                    self.restaurantInfoLabel.text = business.name
+                    self.restaurantImg.kf.setImage(with: business.imageURL)
+                    self.restaurantDistanceLabel.text = business.distance! + " away"
+                    //           self.promotionButton.setTitle(self.promotionList.randomElement(), for: .normal)
+                    self.promotionButton.setTitle(business.coupon, for: .normal)
+                    if isTea{
+                        self.promotionButton.backgroundColor = UIColor(red:0.40, green:0.85, blue:0.60, alpha:1.0)
+                    }else{
+                        self.promotionButton.backgroundColor = UIColor(red:1.00, green:0.94, blue:0.41, alpha:1.0)
+                    }
+                    self.selectedBusiness = business
+                    self.foundBabette = true
+                }
+            }
+            if !self.foundBabette{
+                if isTea == true{
+                    if let randomElement = self.teaList.randomElement() {
+                        restaurantInfoLabel.text = randomElement.name
+                        restaurantImg.kf.setImage(with: randomElement.imageURL)
+                        restaurantDistanceLabel.text = randomElement.distance! + " away"
+                        self.promotionButton.setTitle(self.promotionList.randomElement(), for: .normal)
+                        selectedBusiness = randomElement
+                    }
+                } else{
+                    if let randomElement = self.coffeeList.randomElement() {
+                        restaurantInfoLabel.text = randomElement.name
+                        restaurantImg.kf.setImage(with: randomElement.imageURL)
+                        restaurantDistanceLabel.text = randomElement.distance! + " away"
+                        self.promotionButton.setTitle(self.promotionList.randomElement(), for: .normal)
+                        selectedBusiness = randomElement
+                    }
+                }
+            }
+            let numOfPickLeftLabel = "You have " + String(numOfPick) + " pick(s) left!"
+            numOfPickLeft.text = numOfPickLeftLabel
+            numOfPick-=1
+        }
+        else if numOfPick == 0{
             if isTea == true{
                 if let randomElement = self.teaList.randomElement() {
                     restaurantInfoLabel.text = randomElement.name
@@ -201,7 +265,7 @@ class todaysPickViewController: UIViewController, CLLocationManagerDelegate {
     
     
     @IBAction func showPopup(_ sender: Any) {
-        if self.selectedBusiness?.name == "1951 Coffee Shop" {
+        if self.selectedBusiness?.name == "1951 Coffee Shop" ||  self.selectedBusiness?.name == "Babette" {
             let popOverVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sbPopupID") as! PopupViewController
             self.addChild(popOverVc)
             popOverVc.isTea = self.isTea
@@ -209,6 +273,7 @@ class todaysPickViewController: UIViewController, CLLocationManagerDelegate {
             popOverVc.coupon.text = self.selectedBusiness?.couponValue
             popOverVc.selectedBusiness = self.selectedBusiness
             popOverVc.businessName.text = self.selectedBusiness?.name
+            popOverVc.terms.text = self.selectedBusiness?.terms
             //popOverVc.isTea = self.isTea
             self.view.addSubview(popOverVc.view)
             popOverVc.didMove(toParent: self)
